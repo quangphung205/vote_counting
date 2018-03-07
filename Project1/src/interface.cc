@@ -1,12 +1,16 @@
+/*
+ * @copyright 2018 CSCI 5801 Team 09, All rights reserved.
+ */
+
 #include <iostream>
 
-using namespace std;
+NAMESPACE_BEGIN(std);
 
 class Election {
-public:
+ public:
   int parseInput(ifstream input);
 
-private:
+ private:
 };
 
 class Ballot;

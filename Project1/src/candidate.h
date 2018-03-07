@@ -1,18 +1,21 @@
-#include "ballot.h"
-#include <iostream>
+/*
+ * @copyright 2018 CSCI 5801 Team 09, All rights reserved.
+ */
+#ifndef PROJECT1_SRC_CANDIDATE_H_
+#define PROJECT1_SRC_CANDIDATE_H_
+
 #include <string>
+#include <iostream>
+#include "src/ballot.h"
 
-#ifndef CANDIDATE_H_
-#define CANDIDATE_H_
-
-using namespace std;
+NAMESPACE_BEGIN(std);
 class Candidate {
-public:
+ public:
   /*
    * @TODO: need getters/setters for each member
    */
 
-private:
+ private:
   string name_;
   Ballot *ballot_list_;  // a list of ballots associated with each candidate
                          // after running the voting method
@@ -20,4 +23,4 @@ private:
   bool isWinner;     // check if a candidate is in a winner list (for droop)
 };
 
-#endif  // CANDIDATE_H_
+#endif  // PROJECT1_SRC_CANDIDATE_H_
