@@ -1,21 +1,23 @@
+/*
+ * @copyright 2018 CSCI 5801 Team 09, All rights reserved.
+ */
+#ifndef PROJECT1_SRC_BALLOT_H_
+#define PROJECT1_SRC_BALLOT_H_
+
 #include <iostream>
 
-#ifndef BALLOT_H_
-#define BALLOT_H_
-
-using namespace std;
+NAMESPACE_BEGIN(std);
 
 class Ballot {
-public:
+ public:
   /*
    * @TODO: need getters/setters for each member
    */
-
-private:
-  int* candidate_ranks_;  // a list of rankings for each candidate
+ private:
+     int* candidate_ranks_;  // a list of rankings for each candidate
                           // can be blank (0)
-  int num_candidates_;
-  int id_;
+     int num_candidates_;
+     int id_;
 };
 
-#endif  // BALLOT_H_
+#endif  // PROJECT1_SRC_BALLOT_H_
