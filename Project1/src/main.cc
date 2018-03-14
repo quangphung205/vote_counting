@@ -1,8 +1,13 @@
-#include "election.h"
-#include "ballot.h"
-#include "candidate.h"
+/*
+ * @copyright 2018 CSCI 5801 Team 09, All rights reserved.
+ */
+
+
 #include <iostream>
-using namespace std;
+#include "src/election.h"
+#include "src/ballot.h"
+#include "src/candidate.h"
+NAMESPACE_BEGIN(std);
 
 int main(int argc, char const *argv[]) {
   /* code */
