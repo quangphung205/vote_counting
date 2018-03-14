@@ -85,7 +85,6 @@ int getInput(Election *election) {
   cout << "Your choice: ";
   cin >> algorithm;
 
-  election->
   /* @TODO: implement setters of election class
   election->set_num_candidate(nCandidate);
   election->set_num_seat(nSeat);
