@@ -5,11 +5,11 @@
 #define PROJECT1_SRC_ELECTION_H_
 
 #include <iostream>
-#include "src/ballot.h"
-#include "src/candidate.h"
+#include "ballot.h"
+#include "candidate.h"
 
 
-NAMESPACE_BEGIN(std);
+using namespace std;
 
 class Election {
  public:
@@ -17,7 +17,31 @@ class Election {
    * @TODO: need getters/setters for each member
    */
 
-  int parseInput(ifstream input);
+  /*
+   * @TODO
+   * parseInput: get a CSV file name as an argument
+   * Return value: 1 if successful, 0 error occurs
+   */
+  int parseInput(const char *fname) {
+    cout << "election.h::parseInput Need to implement" << endl;
+    return 1;
+  }
+
+  int get_voting_method() { return voting_method_; }
+  int runPlurality() {
+    cout << "election.h::runPlurality Need to implement" << endl;
+    return -1;
+  }
+
+  int runDroop() {
+    cout << "election.h::runDroop Need to implement" << endl;
+    return -1;
+  }
+
+  int writeToFile(const char *fname) {
+    cout << "election.h::writeToFile Need to implement" << endl;
+    return -1;
+  }
 
  private:
     int num_candidates_;

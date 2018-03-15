@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-NAMESPACE_BEGIN(std);
+using namespace std;
 
 class Ballot {
  public:

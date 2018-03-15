@@ -6,9 +6,9 @@
 
 #include <string>
 #include <iostream>
-#include "src/ballot.h"
+#include "ballot.h"
 
-NAMESPACE_BEGIN(std);
+using namespace std;
 class Candidate {
  public:
    /*
