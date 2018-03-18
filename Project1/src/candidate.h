@@ -19,7 +19,7 @@ class Candidate {
   /*
    * @brief setter method for candidate_name.
    */
-  void setCandidate_name() { }
+  void setCandidate_name(string name) { candidate_name_ = name; }
   /*
    * @brief getter method for isWinner.
    * @return isWinner
@@ -28,7 +28,7 @@ class Candidate {
   /*
    * @brief setter method for isWinner.
    */
-  void setIsWinner() { return isWinner; }
+  void setIsWinner(bool status) { isWinner = status; }
   /*
    * @brief getter method for the ballot_list associated to each candidate.
    * @return ballot_list
@@ -37,12 +37,12 @@ class Candidate {
   /*
    * @brief setter method for ballot_list.
    */
-  void setBallot_list( Ballot *ballot ) {  }
+  void setBallot_list( Ballot *ballot ) { ballot_list_ = ballot; }
   /*
    * @brief getter method for the number of ballots belonging to each candidate.
    * @return num_ballots
    */
-  int num_ballots() { return num_ballots_; }
+  int getNum_ballots() { return num_ballots_; }
   /*
    * @brief setter method for num_ballots.
    */

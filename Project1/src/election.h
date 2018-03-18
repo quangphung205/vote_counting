@@ -37,62 +37,62 @@ class Election {
    * @brief getter method for the list of candidates found in the ballot
    * @return candidates_list_
    */
-  int getCandidates_list() const { return candidates_list_; }
+  Candidate* getCandidates_list() const { return candidates_list_; }
   /*
    * @brief getter method for the list of winner
    * @return winner_list_
    */
-  int getWinner_list() const { return winner_list_; }
+  Candidate* getWinner_list() const { return winner_list_; }
   /*
    * @brief getter method for the alternate list
    * @return alternate_list_
    */
-  int getAlternate_list() const { return alternate_list_; }
+  Candidate* getAlternate_list() const { return alternate_list_; }
   /*
    * @brief getter method for the list of ballots
    * @return ballot_list_
    */
-  int getBallot_list() const { return ballot_list_; }
+  Ballot* getBallot_list() const { return ballot_list_; }
   /*
    * @brief setter method for the number of candidates found in the ballot.
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setNum_candidates() const { return num_candidates_; }
+  void setNum_candidates(int num) { num_candidates_ = num; }
   /*
    * @brief setter method for the number of seats.
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setNum_seats() const { return num_seats_; }
+  void setNum_seats(int num) { num_seats_ = num; }
   /*
    * @brief setter method for the number of ballots
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setNum_ballots() const { return num_ballots_; }
+  void setNum_ballots(int num) { num_ballots_ = num; }
   /*
    * @brief setter method for the voting method
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setVoting_method() const { return voting_method_; }
+  void setVoting_method(int choice) { voting_method_ = choice; }
   /*
    * @brief setter method for the list of candidates found in the ballot
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setCandidates_list() const { return candidates_list_; }
+  void setCandidates_list(Candidate *lst) { candidates_list_ = lst; }
   /*
    * @brief setter method for the list of winner
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setWinner_list() const { return winner_list_; }
+  void setWinner_list(Candidate *lst) { winner_list_ = lst; }
   /*
    * @brief setter method for the alternate list
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setAlternate_list() const { return alternate_list_; }
+  void setAlternate_list(Candidate *lst) { alternate_list_ = lst; }
   /*
    * @brief setter method for the list of ballots
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setBallot_list() const { return ballot_list_; }
+  void setBallot_list(Ballot *lst) { ballot_list_ = lst; }
 
   /*
    * @TODO
