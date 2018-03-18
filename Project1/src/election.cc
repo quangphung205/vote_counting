@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-NAMESPACE_BEGIN(std);
+using namespace std;
 
 class Election {
  public:
@@ -12,9 +12,6 @@ class Election {
 
  private:
 };
-
-class Ballot;
-class Candidate;
 
 int main(int argc, char const *argv[]) {
   /* code */
