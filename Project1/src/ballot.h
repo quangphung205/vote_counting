@@ -39,16 +39,21 @@ class Ballot {
    /*
     * @brief setter method for the array containing each candidate's rankings.
     */
-   void setList_of_ranks() { }
+   void setList_of_ranks(int *lst) { list_of_ranks_ = lst; }
    /*
     * @brief setter method for number of candidates found in the ballot.
     */
-   void setNum_candidates() { }
+   void setNum_candidates(int num) { num_candidates_ = num; }
    /*
     * @brief setter method for ballot_id_.
     */
    void setBallot_id( int id_ ) { ballot_id_ = id_; }
 
+   /*
+    * @brief get a string of Ballot class
+    * @return a string represents Ballot object
+    */
+   string toString();
  private:
    /*
     * @brief an array containing each candidate name.

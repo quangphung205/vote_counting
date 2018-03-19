@@ -34,6 +34,8 @@ int main(int argc, char const *argv[]) {
     cout << "Fail to process input file" << endl;
     return 1;
   }
+  cout << election->toString() << endl;
+  return 1;
 
   if (getInput(election) == -1) {
     cout << "Error occurs. Program exits" << endl;

@@ -8,11 +8,14 @@
 #include "ballot.h"
 #include "candidate.h"
 
+#define MAX_CAND 1000
+#define MAX_BALLOT 1000
 
 using namespace std;
 
 class Election {
  public:
+   Election();
   /*
    * @brief getter method for the number of candidates found in the ballot.
    * @return num_candidates_
@@ -99,12 +102,10 @@ class Election {
    * parseInput: get a CSV file name as an argument
    * Return value: 1 if successful, 0 error occurs
    */
-  int parseInput(const char *fname) {
-    cout << "election.h::parseInput Need to implement" << endl;
-    return 1;
-  }
+  int parseInput(const char *fname);
 
   int get_voting_method() { return voting_method_; }
+
   int runPlurality() {
     cout << "election.h::runPlurality Need to implement" << endl;
     return -1;
@@ -120,6 +121,7 @@ class Election {
     return -1;
   }
 
+  string toString();
  private:
     int num_candidates_;
     int num_seats_;
