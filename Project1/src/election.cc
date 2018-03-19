@@ -15,10 +15,15 @@ Election::Election() {
   ballot_list_ = new Ballot[MAX_BALLOT];
   num_candidates_ = 0;
   num_ballots_ = 0;
+
+  winner_list_ = new Candidate[10];
+  num_winners_ = 10;
+
+  alternate_list_ = new Candidate[7];
+  num_alternatives_ = 7;
 }
 
 int Election::parseInput(const char *fname) {
-  cout << "election.h::parseInput Need to implement" << endl;
   if (fname == NULL) {
     return -1;
   }
@@ -36,8 +41,8 @@ int Election::parseInput(const char *fname) {
   string ballot;
 
   int i = 0;
-  int count = 0;
   while (getline(input, ballots)) {
+    if (ballots == "") continue;
     istringstream tmp(ballots);
     i = 0;
     int *lst = new int(num_candidates_);
@@ -50,11 +55,42 @@ int Election::parseInput(const char *fname) {
       i++;
     }
     ballot_list_[num_ballots_].setNum_candidates(num_candidates_);
-    ballot_list_[num_ballots_].setBallot_id(count);
+    ballot_list_[num_ballots_].setBallot_id(num_ballots_);
     ballot_list_[num_ballots_].setList_of_ranks(lst);
     num_ballots_++;
   }
 
+  input.close();
+  return 1;
+}
+
+int Election::writeToFile(const char *fname) {
+  if (fname == NULL) {
+    return -1;
+  }
+
+  ofstream output(fname);
+  output << "Winner list" << endl;
+  for (int i = 0; i < num_winners_; i++) {
+    output << winner_list_[i].toString() << endl;
+  }
+
+  output << endl << "Alternative list" << endl;
+  for (int i = 0; i < num_alternatives_; i++) {
+    output << alternate_list_[i].toString() << endl;
+  }
+  return 1;
+}
+
+int Election::generateAuditFile(const char *fname) {
+  if (fname == NULL) {
+    return -1;
+  }
+
+  ofstream output(fname);
+  for (int i = 0; i < num_winners_; i++) {
+    output << winner_list_[i].toStringWithVotes() << endl;
+  }
   return 1;
 }
 

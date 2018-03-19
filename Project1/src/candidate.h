@@ -56,6 +56,11 @@ class Candidate {
    * @brief get a string of Candidate class
    */
   string toString();
+
+  /*
+   * @brief get a string of Candidate name with their associated votes
+   */
+  string toStringWithVotes();
  private:
   /*
   * @brief the candidate name.

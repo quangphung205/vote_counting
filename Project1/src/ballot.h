@@ -10,6 +10,7 @@ using namespace std;
 
 class Ballot {
  public:
+   Ballot();
    /*
     * @brief getter method for the array containing each candidate name.
     * @return list_of_names_

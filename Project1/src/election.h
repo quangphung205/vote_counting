@@ -98,9 +98,9 @@ class Election {
   void setBallot_list(Ballot *lst) { ballot_list_ = lst; }
 
   /*
-   * @TODO
-   * parseInput: get a CSV file name as an argument
-   * Return value: 1 if successful, 0 error occurs
+   * @brief proccess input file
+   * @param fname CSV file name
+   * @return 1 if successful, 0 error occurs
    */
   int parseInput(const char *fname);
 
@@ -116,16 +116,16 @@ class Election {
     return -1;
   }
 
-  int writeToFile(const char *fname) {
-    cout << "election.h::writeToFile Need to implement" << endl;
-    return -1;
-  }
+  int writeToFile(const char *fname);
+  int generateAuditFile(const char *fname);
 
   string toString();
  private:
     int num_candidates_;
     int num_seats_;
     int num_ballots_;
+    int num_winners_;
+    int num_alternatives_;
     int voting_method_;
 
     Candidate* candidates_list_;

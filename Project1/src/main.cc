@@ -35,6 +35,8 @@ int main(int argc, char const *argv[]) {
     return 1;
   }
   cout << election->toString() << endl;
+  election->writeToFile("output.txt");
+  election->generateAuditFile("audit.txt");
   return 1;
 
   if (getInput(election) == -1) {

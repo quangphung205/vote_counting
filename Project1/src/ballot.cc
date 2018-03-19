@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+Ballot::Ballot() {
+  ballot_id_ = 5;
+}
+
 string Ballot::toString() {
   char buff[10];
   sprintf(buff, "%d", ballot_id_);
@@ -15,6 +19,6 @@ string Ballot::toString() {
   for (int i = 0; i < num_candidates_; i++) {
     sprintf(buff, "%d", list_of_ranks_[i]);
     result += (string(buff) + " ");
-  }  
+  }
   return result;
 }
