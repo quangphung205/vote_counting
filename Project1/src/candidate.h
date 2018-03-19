@@ -12,6 +12,10 @@ using namespace std;
 class Candidate {
  public:
    /*
+    * @brief constructor
+    */
+  Candidate();
+   /*
     * @brief getter method for the candidate name.
     * @return candidate_name_
     */
@@ -48,6 +52,15 @@ class Candidate {
    */
   void setNum_ballots( int num ) { num_ballots_ = num; }
 
+  /*
+   * @brief get a string of Candidate class
+   */
+  string toString();
+
+  /*
+   * @brief get a string of Candidate name with their associated votes
+   */
+  string toStringWithVotes();
  private:
   /*
   * @brief the candidate name.
