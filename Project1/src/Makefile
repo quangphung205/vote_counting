@@ -1,14 +1,14 @@
-CC = g++
+CC = g++ -std=c++11
 DEBUG = -g
 CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
-OBJS = main.o
+OBJS = main.o election.o ballot.o candidate.o
 
 all: $(OBJS)
-	$(CC) $(LFLAGS) -o sys $(OBJS)
+	$(CC) $(LFLAGS) -o execu $(OBJS)
 
-%.o: %.cpp
+%.o: %.cc
 	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	rm *.o sys
+	rm *.o execu

@@ -5,14 +5,17 @@
 #define PROJECT1_SRC_ELECTION_H_
 
 #include <iostream>
-#include "src/ballot.h"
-#include "src/candidate.h"
+#include "ballot.h"
+#include "candidate.h"
 
+#define MAX_CAND 1000
+#define MAX_BALLOT 1000
 
-NAMESPACE_BEGIN(std);
+using namespace std;
 
 class Election {
  public:
+   Election();
   /*
    * @brief getter method for the number of candidates found in the ballot.
    * @return num_candidates_
@@ -27,79 +30,102 @@ class Election {
    * @brief getter method for the number of ballots
    * @return num_ballots_
    */
-  int getNum_ballots_() const { return num_ballots_;}
+  int getNum_ballots() const { return num_ballots_;}
   /*
    * @brief getter method for the voting type
    * @return voting_method_
    */
-  int getVoting_method_() const { return voting_method_;}
+  int getVoting_method() const { return voting_method_;}
   /*
    * @brief getter method for the list of candidates found in the ballot
    * @return candidates_list_
    */
-  int getCandidates_list_() const { return candidates_list_; }
+  Candidate* getCandidates_list() const { return candidates_list_; }
   /*
    * @brief getter method for the list of winner
    * @return winner_list_
    */
-  int getWinner_list_() const { return winner_list_; }
+  Candidate* getWinner_list() const { return winner_list_; }
   /*
    * @brief getter method for the alternate list
    * @return alternate_list_
    */
-  int getAlternate_list_() const { return alternate_list_; }
+  Candidate* getAlternate_list() const { return alternate_list_; }
   /*
    * @brief getter method for the list of ballots
    * @return ballot_list_
    */
-  int getBallot_list_() const { return ballot_list_; }
+  Ballot* getBallot_list() const { return ballot_list_; }
   /*
    * @brief setter method for the number of candidates found in the ballot.
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setNum_candidates_() const { return num_candidates_; }
+  void setNum_candidates(int num) { num_candidates_ = num; }
   /*
    * @brief setter method for the number of seats.
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setNum_seats_() const { return num_seats_; }
+  void setNum_seats(int num) { num_seats_ = num; }
   /*
    * @brief setter method for the number of ballots
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setNum_ballots_() const { return num_ballots_; }
+  void setNum_ballots(int num) { num_ballots_ = num; }
   /*
    * @brief setter method for the voting method
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setVoting_method_() const { return voting_method_; }
+  void setVoting_method(int choice) { voting_method_ = choice; }
   /*
    * @brief setter method for the list of candidates found in the ballot
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setCandidates_list_() const { return candidates_list_; }
+  void setCandidates_list(Candidate *lst) { candidates_list_ = lst; }
   /*
    * @brief setter method for the list of winner
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setWinner_list_() const { return winner_list_; }
+  void setWinner_list(Candidate *lst) { winner_list_ = lst; }
   /*
    * @brief setter method for the alternate list
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setAlternate_list_() const { return alternate_list_; }
+  void setAlternate_list(Candidate *lst) { alternate_list_ = lst; }
   /*
    * @brief setter method for the list of ballots
    * Note, this should not be implemented and therefore, does nothing
    */
-  void setBallot_list_() const { return ballot_list_; }
+  void setBallot_list(Ballot *lst) { ballot_list_ = lst; }
 
-  int parseInput(ifstream input);
+  /*
+   * @brief proccess input file
+   * @param fname CSV file name
+   * @return 1 if successful, 0 error occurs
+   */
+  int parseInput(const char *fname);
 
+  int get_voting_method() { return voting_method_; }
+
+  int runPlurality() {
+    cout << "election.h::runPlurality Need to implement" << endl;
+    return -1;
+  }
+
+  int runDroop() {
+    cout << "election.h::runDroop Need to implement" << endl;
+    return -1;
+  }
+
+  int writeToFile(const char *fname);
+  int generateAuditFile(const char *fname);
+
+  string toString();
  private:
     int num_candidates_;
     int num_seats_;
     int num_ballots_;
+    int num_winners_;
+    int num_alternatives_;
     int voting_method_;
 
     Candidate* candidates_list_;
