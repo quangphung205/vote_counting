@@ -5,10 +5,10 @@ LFLAGS = -Wall $(DEBUG)
 OBJS = main.o
 
 all: $(OBJS)
-	$(CC) $(LFLAGS) -o sys $(OBJS)
+	$(CC) $(LFLAGS) -o execu $(OBJS)
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	rm *.o sys
+	rm *.o execu
