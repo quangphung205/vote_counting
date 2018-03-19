@@ -1,20 +1,12 @@
 Winner list
-test
-test
-test
-test
-test
-test
-test
-test
-test
-test
+[A]
+[G]
+[G]
 
-Alternative list
-test
-test
-test
-test
-test
-test
-test
+Loser list
+[G]
+[G]
+[G]
+[G]
+[H]
+[I]

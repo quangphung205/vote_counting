@@ -35,9 +35,9 @@ int main(int argc, char const *argv[]) {
     return 1;
   }
   cout << election->toString() << endl;
-  election->writeToFile("output.txt");
-  election->generateAuditFile("audit.txt");
-  return 1;
+  //election->shuffleBallots();
+  //cout << election->toString() << endl;
+  //return 1;
 
   if (getInput(election) == -1) {
     cout << "Error occurs. Program exits" << endl;
@@ -51,6 +51,11 @@ int main(int argc, char const *argv[]) {
     cout << "Running the Droop Quota method..." << endl;
     election->runDroop();
   }
+
+  election->writeToFile("output.txt");
+  election->generateAuditFile("audit.txt");
+  //cout << election->toString() << endl;
+  return 1;
 
   char c;
   char s[255];
@@ -89,11 +94,11 @@ int getInput(Election *election) {
   cout << "Your choice: ";
   cin >> algorithm;
 
-  /* @TODO: implement setters of election class
-  election->set_num_candidate(nCandidate);
-  election->set_num_seat(nSeat);
-  election->set_num_ballots(nBalot);
-  */
+  //election->set_num_candidate(nCandidate);
+  election->setNum_seats(nSeat);
+  election->setVoting_method(algorithm);
+  //election->set_num_ballots(nBalot);
+
   return 1;
 }
 

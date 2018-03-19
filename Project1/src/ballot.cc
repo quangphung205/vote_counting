@@ -6,8 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-Ballot::Ballot() {
-  ballot_id_ = 5;
+Ballot::Ballot() {  
 }
 
 string Ballot::toString() {
@@ -21,4 +20,14 @@ string Ballot::toString() {
     result += (string(buff) + " ");
   }
   return result;
+}
+
+int Ballot::findCandidate(int rank) {
+  for (int i = 0; i < num_candidates_; i++) {
+    if (list_of_ranks_[i] == rank) {
+      return i;
+    }
+  }
+
+  return -1;
 }
