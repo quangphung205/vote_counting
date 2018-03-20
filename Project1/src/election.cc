@@ -33,6 +33,7 @@ int Election::parseInput(const char *fname) {
   ifstream input(fname);
   string names;
   getline(input, names);
+  names.erase(names.length() - 1);
   istringstream iss(names);
   while (getline(iss, names, ',')) {
     candidates_list_[num_candidates_].setCandidate_name(names);
@@ -104,9 +105,7 @@ int Election::generateAuditFile(const char *fname) {
   return 1;
 }
 
-int Election::runPlurality() {
-  cout << "election.h::runPlurality Need to implement" << endl;
-  cout << num_ballots_ << endl;
+int Election::runPlurality() {    
   for (int i = 0; i < num_ballots_; i++) {
     distributeVote(ballot_list_[i]);
   }
@@ -153,18 +152,21 @@ int Election::distributeVote(Ballot bal) {
 }
 
 void Election::sortCandidateByVotes() {
-  Candidate max;
+  //Candidate max;
+  int max;
   for (int i = 0; i < num_candidates_ - 1; i++) {
-    max = candidates_list_[i];
+    //max = candidates_list_[i];
+    max = i;
     for (int j = i; j < num_candidates_; j++) {
-      if (max.getNum_ballots() < candidates_list_[j].getNum_ballots()) {
-        max = candidates_list_[j];
+      if (candidates_list_[max].getNum_ballots() < candidates_list_[j].getNum_ballots()) {
+        //max = candidates_list_[j];
+        max = j;
       }
     }
 
     Candidate tmp = candidates_list_[i];
-    candidates_list_[i] = max;
-    max = tmp;
+    candidates_list_[i] = candidates_list_[max];
+    candidates_list_[max] = tmp;
   }
 }
 

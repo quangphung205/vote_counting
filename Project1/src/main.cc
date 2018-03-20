@@ -20,7 +20,7 @@ bool isValidInput(Input *input);
 int main(int argc, char const *argv[]) {
   /* code */
   if (argc < 2) {
-    cout << "Usage: ./sys <file_name>" << endl;
+    cout << "Usage: ./execu <file_name>" << endl;
     return 1;
   }
 
@@ -34,13 +34,23 @@ int main(int argc, char const *argv[]) {
     cout << "Fail to process input file" << endl;
     return 1;
   }
-  cout << election->toString() << endl;
+  //cout << election->toString() << endl;
   //election->shuffleBallots();
   //cout << election->toString() << endl;
   //return 1;
+  cout << "Processed input file successfully!" << endl;
+  cout << "No. of candidates = " << election->getNum_candidates() << endl;
+  cout << "No. of ballots = " << election->getNum_ballots() << endl;
 
-  if (getInput(election) == -1) {
-    cout << "Error occurs. Program exits" << endl;
+  while (getInput(election) == -1) {
+    cout << "Do you want to continue? (y/n): ";
+    char ans;
+    cin >> ans;
+    if (ans == 'y' || ans == 'Y') {
+      continue;
+    }
+
+    cout << "Program exits" << endl;
     return 1;
   }
 
@@ -52,16 +62,15 @@ int main(int argc, char const *argv[]) {
     election->runDroop();
   }
 
-  election->writeToFile("output.txt");
-  election->generateAuditFile("audit.txt");
+  //election->writeToFile("output.txt");
+  //election->generateAuditFile("audit.txt");
   //cout << election->toString() << endl;
-  return 1;
 
   char c;
   char s[255];
   cout << "Vote counting process is complete." << endl;
-  cout << "Do you want to print it to the screen (y/n)? ";
-  cin >> c;
+  //cout << "Do you want to print it to the screen (y/n)? ";
+  //cin >> c;
   cout << "Enter a name for the output file: ";
   cin >> s;
 
@@ -70,6 +79,15 @@ int main(int argc, char const *argv[]) {
   } else {
     cout << "Cannot write to output file" << endl;
     return 1;
+  }
+
+  cout << "Do you want to generate an audit file? (y/n): ";
+  cin >> c;
+  if (c == 'y' || c == 'Y') {
+    cout << "Enter a name for the audit file: ";
+    cin >> s;
+    election->generateAuditFile(s);
+    cout << "Generate the audit file successfully" << endl;
   }
 
   cout << "Program exits" << endl;
@@ -81,18 +99,37 @@ int getInput(Election *election) {
   int nCandidate, nSeat, nBallot, algorithm;
 
   // @TODO: error handling
-  cout << "main.cc::getInput Need to implement" << endl;
-  cout << "Implement error handling where user input is not valid or does not match CSV file" << endl;
+  //cout << "main.cc::getInput Need to implement" << endl;
+  //cout << "Implement error handling where user input is not valid or does not match CSV file" << endl;
   cout << "Enter a number of candidates: ";
   cin >> nCandidate;
+  if (nCandidate != election->getNum_candidates()) {
+    cout << "Number of candidates does not match" << endl;
+    return -1;
+  }
+
   cout << "Enter a number of seats to fill: ";
   cin >> nSeat;
+  if (nSeat <= 0 || nSeat > nCandidate) {
+    cout << "Number of seats is not valid" << endl;
+    return -1;
+  }
+
   cout << "Enter a total number of ballots: ";
   cin >> nBallot;
+  if (nBallot != election->getNum_ballots()) {
+    cout << "Number of ballots does not match" << endl;
+    return -1;
+  }
+
   cout << "Which algorithm you want to use:" << endl;
   cout << "\t1. Plurality" << endl << "\t2. STV" << endl;
   cout << "Your choice: ";
   cin >> algorithm;
+  if (algorithm != 1 && algorithm != 2) {
+    cout << "Your choice is not valid" << endl;
+    return -1;
+  }
 
   //election->set_num_candidate(nCandidate);
   election->setNum_seats(nSeat);
