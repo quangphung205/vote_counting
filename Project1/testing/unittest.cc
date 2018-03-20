@@ -16,3 +16,21 @@ TEST(toString, ballot) {
   ballot_.setList_of_ranks(a);
 
 }
+
+TEST(Election, Constructor) {
+  Election election;
+
+  EXPECT_EQ(election.getNum_candidates(), 0);
+  EXPECT_EQ(election.getBallot_list(), NULL);
+  EXPECT_EQ(election.getNum_ballots(), 0);
+  EXPECT_EQ(election.getWinner_list(), NULL);
+  EXPECT_EQ(election.getAlternate_list(), NULL);
+}
+
+TEST(Election, parseInput) {
+  Election election;
+
+
+
+
+}
