@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <math.h>
 
 using namespace std;
 
@@ -105,7 +106,7 @@ int Election::generateAuditFile(const char *fname) {
   return 1;
 }
 
-int Election::runPlurality() {    
+int Election::runPlurality() {
   for (int i = 0; i < num_ballots_; i++) {
     distributeVote(ballot_list_[i]);
   }
@@ -194,4 +195,13 @@ void Election::shuffleBallots(int piles) {
     ballot_list_[i] = ballot_list_[j];
     ballot_list_[j] = tmp;
   }
+}
+
+int Election::calculateDroop() {
+  return ((int)floor(num_ballots_ / (num_seats_ + 1)) + 1);
+}
+
+int Election::runDroop() {
+  cout << "election.h::runDroop Need to implement" << endl;
+  return -1;
 }
