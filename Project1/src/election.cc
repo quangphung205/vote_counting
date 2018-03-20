@@ -16,11 +16,13 @@ Election::Election() {
   num_candidates_ = 0;
   num_ballots_ = 0;
 
-  winner_list_ = new Candidate[10];
-  num_winners_ = 10;
+  winner_list_ = new Candidate[MAX_CAND];
+  num_winners_ = 0;
 
-  alternate_list_ = new Candidate[7];
-  num_alternatives_ = 7;
+  alternate_list_ = new Candidate[MAX_CAND];
+  num_alternatives_ = 0;
+
+  invalid_ballot_list_ = new Ballot[MAX_BALLOT];
 }
 
 int Election::parseInput(const char *fname) {
@@ -31,6 +33,7 @@ int Election::parseInput(const char *fname) {
   ifstream input(fname);
   string names;
   getline(input, names);
+  names.erase(names.length() - 1);
   istringstream iss(names);
   while (getline(iss, names, ',')) {
     candidates_list_[num_candidates_].setCandidate_name(names);
@@ -45,15 +48,17 @@ int Election::parseInput(const char *fname) {
     if (ballots == "") continue;
     istringstream tmp(ballots);
     i = 0;
-    int *lst = new int(num_candidates_);
+    int *lst = new int[num_candidates_];
     while(getline(tmp, ballot, ',')) {
       int temp;
-      if (ballot == "")
+      if (ballot == "" || ballot == " " || ballot == "\n"
+            || !(ballot[0] >= '0' && ballot[0] <= '9'))
         temp = 0;
       else temp = stoi(ballot);
       lst[i] = temp;
       i++;
     }
+
     ballot_list_[num_ballots_].setNum_candidates(num_candidates_);
     ballot_list_[num_ballots_].setBallot_id(num_ballots_);
     ballot_list_[num_ballots_].setList_of_ranks(lst);
@@ -75,7 +80,7 @@ int Election::writeToFile(const char *fname) {
     output << winner_list_[i].toString() << endl;
   }
 
-  output << endl << "Alternative list" << endl;
+  output << endl << "Loser list" << endl;
   for (int i = 0; i < num_alternatives_; i++) {
     output << alternate_list_[i].toString() << endl;
   }
@@ -88,10 +93,33 @@ int Election::generateAuditFile(const char *fname) {
   }
 
   ofstream output(fname);
+  output << "Winner list" << endl;
   for (int i = 0; i < num_winners_; i++) {
     output << winner_list_[i].toStringWithVotes() << endl;
   }
+
+  output << endl << "Loser list" << endl;
+  for (int i = 0; i < num_alternatives_; i++) {
+    output << alternate_list_[i].toStringWithVotes() << endl;
+  }
   return 1;
+}
+
+int Election::runPlurality() {    
+  for (int i = 0; i < num_ballots_; i++) {
+    distributeVote(ballot_list_[i]);
+  }
+  // find all candidates with highest votes
+  sortCandidateByVotes();
+
+  for (int i = 0; i < num_winners_; i++) {
+    winner_list_[i] = candidates_list_[i];
+  }
+
+  for (int i = 0; i < num_alternatives_; i++) {
+    alternate_list_[i] = candidates_list_[i + num_winners_];
+  }
+  return -1;
 }
 
 string Election::toString() {
@@ -103,4 +131,67 @@ string Election::toString() {
     result += ballot_list_[i].toString() + "\n";
   }
   return result;
+}
+
+int Election::distributeVote(Ballot bal) {
+  int rank = 1;
+  int idx;
+  while ((idx = bal.findCandidate(rank)) != -1) {
+    if (candidates_list_[idx].getIsWinner() == true) {
+      rank++;
+      continue;
+    }
+
+    candidates_list_[idx].recordBallot(bal);
+    return idx;
+  }
+
+  // this ballot is invalid
+  invalid_ballot_list_[num_invalid_ballots_++] = bal;
+  return -1;
+}
+
+void Election::sortCandidateByVotes() {
+  //Candidate max;
+  int max;
+  for (int i = 0; i < num_candidates_ - 1; i++) {
+    //max = candidates_list_[i];
+    max = i;
+    for (int j = i; j < num_candidates_; j++) {
+      if (candidates_list_[max].getNum_ballots() < candidates_list_[j].getNum_ballots()) {
+        //max = candidates_list_[j];
+        max = j;
+      }
+    }
+
+    Candidate tmp = candidates_list_[i];
+    candidates_list_[i] = candidates_list_[max];
+    candidates_list_[max] = tmp;
+  }
+}
+
+void Election::shuffleBallots(int piles) {
+  Ballot **ballot_piles = new Ballot*[piles];
+  for (int i = 0; i < piles; i++) {
+    ballot_piles[i] = new Ballot[MAX_BALLOT];
+  }
+
+  int count[piles] = { 0 };
+  for (int i = 0; i < num_ballots_; i++) {
+    int j = i % piles;
+    ballot_piles[j][count[j]++] = ballot_list_[i];
+  }
+
+  int k = 0;
+  for (int i = 0; i < piles; i++) {
+    for (int j = 0; j < count[i]; j++) {
+      ballot_list_[k++] = ballot_piles[i][j];
+    }
+  }
+
+  for (int i = 0, j = num_ballots_ - 1; i < j; i++, j--) {
+    Ballot tmp = ballot_list_[i];
+    ballot_list_[i] = ballot_list_[j];
+    ballot_list_[j] = tmp;
+  }
 }
