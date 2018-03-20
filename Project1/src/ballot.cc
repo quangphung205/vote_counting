@@ -11,7 +11,6 @@ Ballot::Ballot() {
   list_of_names_ = [];
   list_of_ranks_ = [];
   num_candidates_ = 0;
-
 }
 
 string Ballot::toString() {
@@ -25,4 +24,14 @@ string Ballot::toString() {
     result += (string(buff) + " ");
   }
   return result;
+}
+
+int Ballot::findCandidate(int rank) {
+  for (int i = 0; i < num_candidates_; i++) {
+    if (list_of_ranks_[i] == rank) {
+      return i;
+    }
+  }
+
+  return -1;
 }
