@@ -8,6 +8,10 @@
 
 Ballot::Ballot() {
   ballot_id_ = 5;
+  list_of_names_ = [];
+  list_of_ranks_ = [];
+  num_candidates_ = 0;
+
 }
 
 string Ballot::toString() {
