@@ -26,7 +26,7 @@ TEST(toString, ballot) {
   ballot_.setList_of_ranks(a);
 
 }
-
+/* election.h unit tests */
 TEST(Election, Constructor) {
   Election election;
 
@@ -37,13 +37,69 @@ TEST(Election, Constructor) {
   EXPECT_EQ(election.getAlternate_list(), NULL);
 }
 
-TEST(Election, parseInput) {
+TEST(Election, toString) {
   Election election;
+  // testing default constructor values before alteration
+  EXPECT_EQ(election.getNum_candidates(), 0);
+  EXPECT_EQ(election.getBallot_list(), NULL);
+  EXPECT_EQ(election.getNum_ballots(), 0);
+  EXPECT_EQ(election.getWinner_list(), NULL);
+  EXPECT_EQ(election.getAlternate_list(), NULL);
+  // testing alteration
+  // TODO
 
-
-
+  // testing default constructor values after alteration
+  EXPECT_EQ(election.getNum_candidates(), 0);
+  EXPECT_EQ(election.getBallot_list(), NULL);
+  EXPECT_EQ(election.getNum_ballots(), 0);
+  EXPECT_EQ(election.getWinner_list(), NULL);
+  EXPECT_EQ(election.getAlternate_list(), NULL);
 
 }
+
+TEST(Election, parseInput) {
+  // TODO
+  EXPECT_EQ(election.get(), 0);
+  EXPECT_EQ(election.getBallot_list(), NULL);
+  EXPECT_EQ(election.getNum_ballots(), 0);
+  EXPECT_EQ(election.getWinner_list(), NULL);
+  EXPECT_EQ(election.getAlternate_list(), NULL);
+  // testing alteration
+  // TODO
+
+  // testing default constructor values after alteration
+  EXPECT_EQ(election.getNum_candidates(), 0);
+  EXPECT_EQ(election.getBallot_list(), NULL);
+  EXPECT_EQ(election.getNum_ballots(), 0);
+  EXPECT_EQ(election.getWinner_list(), NULL);
+  EXPECT_EQ(election.getAlternate_list(), NULL);
+}
+
+TEST(Election, writeToFile) {
+  // TODO
+}
+
+TEST(Election, generateAuditFile) {
+  // TODO
+}
+
+TEST(Election, runPlurality) {
+
+}
+
+TEST(Election, distributeVote) {
+  // TODO
+}
+
+TEST(Election, sortCandidateByVotes) {
+  // TODO
+}
+
+TEST(Election, shuffleBallots) {
+
+}
+
+
 /* candidate.h unit tests */
 TEST(Candidate, constructor) {
   Candidate candidate;
