@@ -55,6 +55,13 @@ class Ballot {
     * @return a string represents Ballot object
     */
    string toString();
+
+   /*
+    * @brief find a candidate whose rank is specified in a list_of_ranks_
+    * @param rank a rank of candidate that we want to find
+    * @return an index of a candidate, -1 if fails
+    */
+   int findCandidate(int rank);
  private:
    /*
     * @brief an array containing each candidate name.
