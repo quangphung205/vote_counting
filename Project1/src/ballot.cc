@@ -8,8 +8,8 @@
 
 Ballot::Ballot() {
   ballot_id_ = 5;
-  list_of_names_ = [];
-  list_of_ranks_ = [];
+  list_of_names_ = NULL;
+  list_of_ranks_ = NULL;
   num_candidates_ = 0;
 }
 

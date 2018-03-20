@@ -204,4 +204,5 @@ int Election::calculateDroop() {
 int Election::runDroop() {
   cout << "election.h::runDroop Need to implement" << endl;
   return -1;
+
 }
