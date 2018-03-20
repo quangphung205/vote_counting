@@ -8,6 +8,8 @@
 #include <iostream>
 #include "ballot.h"
 
+#define MAX_BALLOT 1000
+
 using namespace std;
 class Candidate {
  public:
@@ -61,6 +63,11 @@ class Candidate {
    * @brief get a string of Candidate name with their associated votes
    */
   string toStringWithVotes();
+
+  /*
+   * @brief record a ballot
+   */
+  void recordBallot(Ballot bal);
  private:
   /*
   * @brief the candidate name.
