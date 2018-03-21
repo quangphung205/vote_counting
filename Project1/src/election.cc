@@ -34,16 +34,22 @@ int Election::parseInput(const char *fname) {
   ifstream input(fname);
   string names;
   getline(input, names);
-  names.erase(names.length() - 1);
+
+  if (names[names.length() - 1] == '\n' || names[names.length() - 1] == '\r') {
+    names.erase(names.length() - 1);
+  }
+
   istringstream iss(names);
   while (getline(iss, names, ',')) {
     candidates_list_[num_candidates_].setCandidate_name(names);
     num_candidates_++;
   }
+
+  /*
   if (names != "" || names != "\n") {
     candidates_list_[num_candidates_++].setCandidate_name(names);
   }
-
+  */
   string ballots;
   string ballot;
 
@@ -206,9 +212,6 @@ int Election::calculateDroop() {
 }
 
 int Election::runDroop() {
-  cout << "election.h::runDroop Need to implement" << endl;
-  return -1;
-
   Ballot *bal_lst = ballot_list_;
   int bal_num = num_ballots_;
   int cand_idx;
@@ -226,23 +229,52 @@ int Election::runDroop() {
         continue;
       }
 
+      //cout << candidates_list_[cand_idx].toStringWithVotes() << endl;
       if (candidates_list_[cand_idx].getNum_ballots() == quota) {
         candidates_list_[cand_idx].setIsWinner(true);
+        candidates_list_[cand_idx].setStatus(1);
         winner_list_[num_winners_++] = candidates_list_[cand_idx];
+        //cout << "win " << winner_list_[num_winners_ - 1].toString() << endl;
       }
     }
 
-    bal_lst = getLoserBallotList(bal_num);
+    bal_lst = getLoserBallotList(bal_num, cand_idx);
+
+    while (bal_num == 0) {
+      candidates_list_[cand_idx].setStatus(2);
+      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];
+      bal_lst = getLoserBallotList(bal_num, cand_idx);
+    }
+
+    if (cand_idx != -1) {
+      candidates_list_[cand_idx].setStatus(2);
+      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];
+      //cout << "alt " << alternate_list_[num_alternatives_ - 1].toString() << endl;
+    }
   }
+
+  // reverse the alternate list
+  for (int i = 0, j = num_alternatives_ - 1; i < j; i++, j--) {
+    Candidate temp = alternate_list_[i];
+    alternate_list_[i] = alternate_list_[j];
+    alternate_list_[j] = temp;
+  }
+
+  return 1;
 }
 
 int Election::getLoser() {
-  int min = candidates_list_[0].getNum_ballots();
-  int idx = 0;
+  int min = -1;
+  int idx = -1;
 
-  for (int i = 1; i < num_candidates_; i++) {
+  for (int i = 0; i < num_candidates_; i++) {
     if (candidates_list_[i].getStatus() != 0) {
       continue;
+    }
+
+    if (idx == -1) {
+      min = candidates_list_[i].getNum_ballots();
+      idx = i;
     }
 
     if (candidates_list_[i].getNum_ballots() < min) {
@@ -254,8 +286,16 @@ int Election::getLoser() {
   return idx;
 }
 
-Ballot* Election::getLoserBallotList(int &n) {
+Ballot* Election::getLoserBallotList(int &n, int &idx) {
   int i = getLoser();
+
+  if (i == -1) {
+    idx = -1;
+    n = -1;
+    return NULL;
+  }
+
+  idx = i;
   n = candidates_list_[i].getNum_ballots();
   return (candidates_list_[i].getBallot_list());
 }
