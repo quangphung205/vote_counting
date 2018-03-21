@@ -59,7 +59,7 @@ protected:
 
 
 
- TEST_F(ProjectTest, toString) {
+ //TEST_F(ProjectTest, toString) {
 
  TEST(Ballot, toString) {
 
