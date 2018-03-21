@@ -13,8 +13,9 @@ using namespace std;
 
 Election::Election() {
   candidates_list_ = new Candidate[MAX_CAND];
-  ballot_list_ = new Ballot[MAX_BALLOT];
   num_candidates_ = 0;
+
+  ballot_list_ = new Ballot[MAX_BALLOT];
   num_ballots_ = 0;
 
   winner_list_ = new Candidate[MAX_CAND];
@@ -24,6 +25,10 @@ Election::Election() {
   num_alternatives_ = 0;
 
   invalid_ballot_list_ = new Ballot[MAX_BALLOT];
+  num_invalid_ballots_ = 0;
+
+  num_seats_ = 0;
+  voting_method_ = 0;
 }
 
 int Election::parseInput(const char *fname) {
@@ -45,11 +50,6 @@ int Election::parseInput(const char *fname) {
     num_candidates_++;
   }
 
-  /*
-  if (names != "" || names != "\n") {
-    candidates_list_[num_candidates_++].setCandidate_name(names);
-  }
-  */
   string ballots;
   string ballot;
 
@@ -147,7 +147,6 @@ int Election::distributeVote(Ballot bal) {
   int rank = 1;
   int idx;
   while ((idx = bal.findCandidate(rank)) != -1) {
-    //if (candidates_list_[idx].getIsWinner() == true) {
     if (candidates_list_[idx].getStatus() == 1 || candidates_list_[idx].getStatus() == 2) {
       rank++;
       continue;
@@ -163,14 +162,11 @@ int Election::distributeVote(Ballot bal) {
 }
 
 void Election::sortCandidateByVotes() {
-  //Candidate max;
   int max;
   for (int i = 0; i < num_candidates_ - 1; i++) {
-    //max = candidates_list_[i];
     max = i;
     for (int j = i; j < num_candidates_; j++) {
       if (candidates_list_[max].getNum_ballots() < candidates_list_[j].getNum_ballots()) {
-        //max = candidates_list_[j];
         max = j;
       }
     }
@@ -212,6 +208,9 @@ int Election::calculateDroop() {
 }
 
 int Election::runDroop() {
+  if (shuffle_)
+    shuffleBallots();
+
   Ballot *bal_lst = ballot_list_;
   int bal_num = num_ballots_;
   int cand_idx;
@@ -229,12 +228,10 @@ int Election::runDroop() {
         continue;
       }
 
-      //cout << candidates_list_[cand_idx].toStringWithVotes() << endl;
       if (candidates_list_[cand_idx].getNum_ballots() == quota) {
         candidates_list_[cand_idx].setIsWinner(true);
         candidates_list_[cand_idx].setStatus(1);
         winner_list_[num_winners_++] = candidates_list_[cand_idx];
-        //cout << "win " << winner_list_[num_winners_ - 1].toString() << endl;
       }
     }
 
@@ -248,8 +245,7 @@ int Election::runDroop() {
 
     if (cand_idx != -1) {
       candidates_list_[cand_idx].setStatus(2);
-      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];
-      //cout << "alt " << alternate_list_[num_alternatives_ - 1].toString() << endl;
+      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];    
     }
   }
 
