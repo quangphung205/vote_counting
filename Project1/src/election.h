@@ -178,6 +178,10 @@ class Election {
 
      void sortCandidateByVotes();
 
+     int getLoser();
+
+     Ballot* getLoserBallotList(int &n);
+
   public:
      void shuffleBallots(int piles = 5);
 };
