@@ -8,7 +8,7 @@
 #include <iostream>
 #include "ballot.h"
 
-#define MAX_BALLOT 1000
+#define MAX_BALLOT 10000
 
 using namespace std;
 class Candidate {
@@ -69,7 +69,7 @@ class Candidate {
   string toStringWithVotes();
 
   /*
-   * @brief record a ballot
+   * @brief record a ballot "bal" to the next candidate based on ranks
    */
   void recordBallot(Ballot bal);
  private:
