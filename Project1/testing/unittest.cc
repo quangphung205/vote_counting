@@ -39,8 +39,8 @@ protected:
  TEST_F(ProjectTest, constructor) {
    Ballot ballot;
    //testing default constructor values
-   //EXPECT_EQ(ballot.getList_of_names(), []);
-   //EXPECT_NE(ballot.getList_of_ranks(), []);
+   EXPECT_EQ((long)ballot.getList_of_names(), NULL);
+   EXPECT_EQ((long)ballot.getList_of_ranks(), NULL);
    EXPECT_EQ(ballot.getNum_candidates(), 0);
    EXPECT_EQ(ballot.getBallot_id(), 5);
 
@@ -54,9 +54,15 @@ protected:
    EXPECT_EQ(ballot.getBallot_id(), 10);
    EXPECT_EQ(ballot.getNum_candidates(), 5);
    EXPECT_EQ(ballot.getList_of_ranks(), ranks);
+   EXPECT_EQ(ballot.getList_of_names(), names);
  }
 
+
+
+ TEST_F(ProjectTest, toString) {
+
  TEST(Ballot, toString) {
+
    Ballot ballot;
    ballot.setBallot_id(10);
    EXPECT_EQ(ballot.getBallot_id(), 10);
@@ -69,7 +75,7 @@ protected:
 
  }
 
- TEST(Ballot, findCandidate) {
+ TEST_F(ProjectTest, findCandidate) {
    Ballot ballot;
    ballot.setNum_candidates(5);
    int ranks[] = {1, 2, 3, 4};
