@@ -1,3 +1,7 @@
 *.o
 execu
+*.gcda
+*.d
+*.gcno
+Project1/testing/build/bin/unittest
 

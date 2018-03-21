@@ -120,10 +120,15 @@ class Election {
    */
   int runPlurality();
 
-  int runDroop() {
-    cout << "election.h::runDroop Need to implement" << endl;
-    return -1;
-  }
+  /*
+   * @brief calculate the droop quota
+   */
+  int calculateDroop();
+
+  /*
+   * @brief run Droop method
+   */
+  int runDroop();
 
   /*
    * @brief write a list of winners and losers to a file
@@ -172,6 +177,10 @@ class Election {
      int distributeVote(Ballot bal);
 
      void sortCandidateByVotes();
+
+     int getLoser();
+
+     Ballot* getLoserBallotList(int &n);
 
   public:
      void shuffleBallots(int piles = 5);
