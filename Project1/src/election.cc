@@ -40,6 +40,9 @@ int Election::parseInput(const char *fname) {
     candidates_list_[num_candidates_].setCandidate_name(names);
     num_candidates_++;
   }
+  if (names != "" || names != "\n") {
+    candidates_list_[num_candidates_++].setCandidate_name(names);
+  }
 
   string ballots;
   string ballot;
