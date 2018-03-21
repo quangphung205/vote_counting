@@ -1,5 +1,3 @@
-# inet4021_lab01
-
 IMPORTANT PROTOCOL
 
 README: <br />
