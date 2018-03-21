@@ -36,7 +36,7 @@ class Ballot {
    /*
     * @brief setter method for the array containing each candidate name.
     */
-   void setList_of_names() { }
+   void setList_of_names(char** names) {list_of_names_ = names; }
    /*
     * @brief setter method for the array containing each candidate's rankings.
     */
