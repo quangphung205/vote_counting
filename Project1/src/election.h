@@ -180,7 +180,7 @@ class Election {
 
      int getLoser();
 
-     Ballot* getLoserBallotList(int &n);
+     Ballot* getLoserBallotList(int &n, int &idx);
 
   public:
      void shuffleBallots(int piles = 5);

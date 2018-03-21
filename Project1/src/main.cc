@@ -34,6 +34,7 @@ int main(int argc, char const *argv[]) {
     cout << "Fail to process input file" << endl;
     return 1;
   }
+    
   //cout << election->toString() << endl;
   //election->shuffleBallots();
   //cout << election->toString() << endl;
