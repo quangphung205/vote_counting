@@ -8,6 +8,7 @@
 // The Google Test framework
 #include <gtest/gtest.h>
 #include "src/candidate.h"
+#include "src/ballot.h"
 
 /*******************************************************************************
  * Namespaces
@@ -15,10 +16,10 @@
 using namespace std;
 //NAMESPACE_BEGIN(std);
 
-class CandidateTest : public ::testing::Test {
+class ProjectTest : public ::testing::Test {
 protected:
   virtual void SetUp() {
-    
+
   }
 };
 
@@ -28,7 +29,51 @@ protected:
  * Tests
  ******************************************************************************/
 
-TEST_F(CandidateTest, setListOfRank) {
+ TEST_F(ProjectTest, constructor) {
+   Ballot ballot;
+   //testing default constructor values
+   //EXPECT_EQ(ballot.getList_of_names(), []);
+   //EXPECT_NE(ballot.getList_of_ranks(), []);
+   EXPECT_EQ(ballot.getNum_candidates(), 0);
+   EXPECT_EQ(ballot.getBallot_id(), 5);
+
+   ballot.setBallot_id(10);
+   ballot.setNum_candidates(5);
+   int ranks[] = {1, 2, 3, 4};
+   char* names[] = {"john", "mary", "bromeo"};
+   ballot.setList_of_ranks(ranks);
+   ballot.setList_of_names(names);
+
+   EXPECT_EQ(ballot.getBallot_id(), 10);
+   EXPECT_EQ(ballot.getNum_candidates(), 5);
+   EXPECT_EQ(ballot.getList_of_ranks(), ranks);
+ }
+
+
+ TEST(Ballot, toString) {
+   Ballot ballot;
+   ballot.setBallot_id(10);
+   EXPECT_EQ(ballot.getBallot_id(), 10);
+   ballot.setNum_candidates(4);
+   int ranks[] = {1, 2, 3, 4};
+   ballot.setList_of_ranks(ranks);
+   string str = "ID: 10 Count: 4\n1 2 3 4 ";
+   EXPECT_EQ(ballot.toString(), str);
+   EXPECT_NE(ballot.toString(), "");
+
+ }
+
+ TEST(Ballot, findCandidate) {
+   Ballot ballot;
+   ballot.setNum_candidates(5);
+   int ranks[] = {1, 2, 3, 4};
+   ballot.setList_of_ranks(ranks);
+   EXPECT_EQ(ballot.findCandidate(1), 0);
+   EXPECT_NE(ballot.findCandidate(1), 2);
+
+ }
+
+TEST_F(ProjectTest, setListOfRank) {
   Ballot ballot_;
   ballot_.setBallot_id(10);
   ballot_.setNum_candidates(5);
@@ -37,64 +82,6 @@ TEST_F(CandidateTest, setListOfRank) {
 
 }
 
-/* candidate.h unit tests */
-TEST(CandidateTest, constructor) {
-  Candidate candidate;
-  // testing default constructor values
-  EXPECT_EQ(candidate.getCandidate_name(), "");
-  //  EXPECT_NE(candidate.getBallot_list(), NULL);
-  EXPECT_EQ(candidate.getNum_ballots(), 0);
-  EXPECT_EQ(candidate.getIsWinner(), false);
 
-  candidate.setCandidate_name("a Test");
-  // TODO someBallot = new Ballot[]
-  // TODO candidate.setBallot_list();
-  candidate.setNum_ballots(99);
-  candidate.setIsWinner(true);
-
-  EXPECT_EQ(candidate.getCandidate_name(), "a Test");
-  // TODO EXPECT_NE(candidate.getBallot_list(), );
-  EXPECT_EQ(candidate.getNum_ballots(), 99);
-  EXPECT_EQ(candidate.getIsWinner(), true);
-}
-
-TEST_F(CandidateTest, toString) {
-  Candidate candidate;
-  // testing default constructor values before alteration
-  EXPECT_EQ(candidate.getCandidate_name(), "");
-  //  EXPECT_NE(candidate.getBallot_list(), NULL);
-  EXPECT_EQ(candidate.getNum_ballots(), 0);
-  EXPECT_EQ(candidate.getIsWinner(), false);
-  // testing alteration
-  candidate.setCandidate_name("QWERTY");
-  EXPECT_EQ(candidate.getCandidate_name(), "QWERTY");
-  EXPECT_EQ(candidate.toString(), "QWERTY");
-  candidate.setCandidate_name("");
-  // testing default constructor values after alteration
-  EXPECT_EQ(candidate.getCandidate_name(), "");
-  //  EXPECT_NE(candidate.getBallot_list(), NULL);
-  EXPECT_EQ(candidate.getNum_ballots(), 0);
-  EXPECT_EQ(candidate.getIsWinner(), false);
-}
-
-TEST_F(CandidateTest, toStringWithVotes) {
-  Candidate candidate;
-  // testing default constructor values before alteration
-  EXPECT_EQ(candidate.getCandidate_name(), "");
-  //  EXPECT_NE(candidate.getBallot_list(), NULL);
-  EXPECT_EQ(candidate.getNum_ballots(), 0);
-  EXPECT_EQ(candidate.getIsWinner(), false);
-  // testing alteration
-  candidate.setCandidate_name("default");
-  EXPECT_EQ(candidate.getCandidate_name(), "default");
-  candidate.setNum_ballots(3);
-  EXPECT_EQ(candidate.getNum_ballots(), 3);
-  // TODO how to handle ballot_list_[i].getBallot_id()
-  // TODO toStringWithVotes
-  // testing default constructor values after alteration
-  //  EXPECT_NE(candidate.getBallot_list(), NULL);
-  EXPECT_EQ(candidate.getNum_ballots(), 0);
-  EXPECT_EQ(candidate.getIsWinner(), false);
-}
 
 #endif  // UNITTEST

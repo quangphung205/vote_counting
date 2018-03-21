@@ -33,7 +33,7 @@ protected:
    EXPECT_EQ(ballot.getList_of_names(), []);
    EXPECT_NE(ballot.getList_of_ranks(), []);
    EXPECT_EQ(ballot.getNum_Candidates(), 0);
-   EXPECT_EQ(ballot.getBallot_id(5));
+   EXPECT_EQ(ballot.getBallot_id(), 5);
 
    ballot.setBallot_id(10);
    ballot.setNum_candidates(5);
