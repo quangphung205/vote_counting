@@ -8,6 +8,7 @@ Candidate::Candidate() {
   candidate_name_ = "";
   ballot_list_ = new Ballot[MAX_BALLOT];
   num_ballots_ = 0;
+  status_ = 0;
   isWinner = false;
 }
 
