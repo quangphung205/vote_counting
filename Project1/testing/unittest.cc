@@ -47,7 +47,7 @@ protected:
    ballot.setBallot_id(10);
    ballot.setNum_candidates(5);
    int ranks[] = {1, 2, 3, 4};
-   char* names[] = {"john", "mary", "bromeo"};
+   char* names[] = {(char*)"john", (char*)"mary", (char*)"bromeo"};
    ballot.setList_of_ranks(ranks);
    ballot.setList_of_names(names);
 
@@ -118,22 +118,33 @@ TEST_F(ProjectTest, parseInput) {
 
 }
 
+TEST_F(ProjectTest, calculateDroop) {
+  Election election;
+  election.setNum_seats(10);
+  election.setNum_ballots(44);
+  EXPECT_EQ(election.calculateDroop(), 5);
+}
+
+/*
+TEST_F(ProjectTest, runPlurality) {
+  Election election;
+  election.parseInput("input.csv");
+  election.runPlurality();
+}
+*/
+
 TEST_F(ProjectTest, writeToFile) {
   Election election;
-
-  // TODO
-  // election.writeToFile(" ");
-  // EXPECT_EQ(election.getNum_candidates(), 6)
-  // EXPECT_EQ(election.getNum_ballots(), 6)
+  election.parseInput("input.csv");
+  election.setNum_seats(1);
+  election.runPlurality();
+  //int status = election.writeToFile("output.txt");
+  EXPECT_EQ(1, 1);
 }
 
 TEST_F(ProjectTest, generateAuditFile) {
   Election election;
 
-  // TODO
-  // election.generateAuditFile(" ");
-  // EXPECT_EQ(election.getNum_candidates(), 6)
-  // EXPECT_EQ(election.getNum_ballots(), 6)
 }
 
 TEST_F(ProjectTest, runPlurality) {
