@@ -219,7 +219,7 @@ int Election::runDroop() {
   num_alternatives_ = 0;
   num_invalid_ballots_ = 0;
 
-  while (bal_num != -1) {
+  while (num_winners_ < num_seats_ && bal_num != -1) {
     for (int i = 0; i < bal_num; i++) {
       cand_idx = distributeVote(bal_lst[i]);
 
@@ -245,10 +245,13 @@ int Election::runDroop() {
 
     if (cand_idx != -1) {
       candidates_list_[cand_idx].setStatus(2);
-      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];    
+      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];
     }
   }
 
+  while (num_winners_ < num_seats_) {
+    winner_list_[num_winners_++] = alternate_list_[--num_alternatives_];
+  }
   // reverse the alternate list
   for (int i = 0, j = num_alternatives_ - 1; i < j; i++, j--) {
     Candidate temp = alternate_list_[i];
