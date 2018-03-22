@@ -1,4 +1,4 @@
-**To Grader**
+
 
 *****HOW TO RUN THE PROGRAM*****
 1. Go to Project1/src directory
@@ -10,7 +10,7 @@
 
 *****HOW TO RUN THE DOXYGEN*****
 1. Go to Project1 directory
-2. Run doxygen documenation/Doxyfile
+2. Run $doxygen documenation/Doxyfile
 3. All html files will be created and stored in documentation/html directory,
    including the main page
 
