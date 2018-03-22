@@ -111,7 +111,16 @@ TEST_F(ProjectTest, Constructor_election) {
 TEST_F(ProjectTest, parseInput) {
   Election election;
 
-  // TODO
+  election.setNum_candidates(0);
+  election.setNum_seats(0);
+  election.setNum_ballots(0);
+  election.setVoting_method(0);
+
+  EXPECT_EQ(election.getNum_candidates(), 0);
+  EXPECT_EQ(election.getNum_seats(), 0);
+  EXPECT_EQ(election.getNum_ballots(), 0);
+  EXPECT_EQ(election.getVoting_method(), 0);
+
   election.parseInput("input.csv");
   EXPECT_EQ(election.getNum_candidates(), 6) << "Fail on num candidate\n";
   EXPECT_EQ(election.getNum_ballots(), 6) << "Fail on num ballots\n";
@@ -149,20 +158,11 @@ TEST_F(ProjectTest, toString_for_election) {
   Election election;
   // testing default constructor values before alteration
   EXPECT_EQ(election.getNum_candidates(), 0);
-  // EXPECT_EQ(election.getBallot_list(), NULL);
   EXPECT_EQ(election.getNum_ballots(), 0);
-  // EXPECT_EQ(election.getWinner_list(), NULL);
-  // EXPECT_EQ(election.getAlternate_list(), NULL);
-  // testing alteration
-  // TODO
 
   // testing default constructor values after alteration
   EXPECT_EQ(election.getNum_candidates(), 0);
-  // EXPECT_EQ(election.getBallot_list(), NULL);
   EXPECT_EQ(election.getNum_ballots(), 0);
-  // EXPECT_EQ(election.getWinner_list(), NULL);
-  // EXPECT_EQ(election.getAlternate_list(), NULL);
-
 }
 
 TEST_F(ProjectTest, distributeVote) {
@@ -248,7 +248,6 @@ TEST_F(CandidateTest, toStringWithVotes) {
   candidate.setNum_ballots(0);
   EXPECT_EQ(candidate.getNum_ballots(), 0);
   EXPECT_EQ(candidate.getIsWinner(), false);
-
 }
 
 #endif  // UNITTEST
