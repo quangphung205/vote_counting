@@ -158,6 +158,7 @@ TEST_F(ProjectTest, runPlurality) {
 
 TEST_F(ProjectTest, toString_for_election) {
   Election election;
+  EXPECT_EQ(election.toString(), "");
   // testing default constructor values before alteration
   EXPECT_EQ(election.getNum_candidates(), 0);
   // EXPECT_EQ(election.getBallot_list(), NULL);
