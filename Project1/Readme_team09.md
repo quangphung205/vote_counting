@@ -1,12 +1,3 @@
-**msg to grader(s)**
-
-**How to run the program. How to run doxy. How to run unit test. And where to look**
-
-
-
-
-
-**to team09**
 **IMPORTANT PROTOCOL**
 
 **NEVER WORK ON THE MASTER BRANCH.** You should **ALWAYS** be on your own branch! <br />
