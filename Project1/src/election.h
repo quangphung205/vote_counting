@@ -9,7 +9,7 @@
 #include "candidate.h"
 
 #define MAX_CAND 1000
-#define MAX_BALLOT 1000
+#define MAX_BALLOT 10000
 
 using namespace std;
 
@@ -101,6 +101,8 @@ class Election {
    */
   void setBallot_list(Ballot *lst) { ballot_list_ = lst; }
 
+  void setShuffle(bool stat) { shuffle_ = stat; }
+
   /*
    * @brief proccess input file
    * @param fname CSV file name
@@ -120,10 +122,15 @@ class Election {
    */
   int runPlurality();
 
-  int runDroop() {
-    cout << "election.h::runDroop Need to implement" << endl;
-    return -1;
-  }
+  /*
+   * @brief calculate the droop quota
+   */
+  int calculateDroop();
+
+  /*
+   * @brief run Droop method
+   */
+  int runDroop();
 
   /*
    * @brief write a list of winners and losers to a file
@@ -151,12 +158,12 @@ class Election {
     int num_ballots_;
     int num_invalid_ballots_;
     int num_winners_;
-    int num_alternatives_;
+    int num_alternatives_;  // number of losers
     int voting_method_;
 
     Candidate* candidates_list_;
     Candidate* winner_list_;
-    Candidate* alternate_list_;
+    Candidate* alternate_list_;  // list of losers
     Ballot* ballot_list_;
     Ballot* invalid_ballot_list_;
 
@@ -173,7 +180,12 @@ class Election {
 
      void sortCandidateByVotes();
 
-  public:
+     // get a candidate who has the lowest votes
+     int getLoser();
+
+     // get a list of ballots of the loser to redistribute
+     Ballot* getLoserBallotList(int &n, int &idx);
+
      void shuffleBallots(int piles = 5);
 };
 

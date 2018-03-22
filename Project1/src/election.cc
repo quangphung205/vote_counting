@@ -7,13 +7,15 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <math.h>
 
 using namespace std;
 
 Election::Election() {
   candidates_list_ = new Candidate[MAX_CAND];
-  ballot_list_ = new Ballot[MAX_BALLOT];
   num_candidates_ = 0;
+
+  ballot_list_ = new Ballot[MAX_BALLOT];
   num_ballots_ = 0;
 
   winner_list_ = new Candidate[MAX_CAND];
@@ -23,6 +25,10 @@ Election::Election() {
   num_alternatives_ = 0;
 
   invalid_ballot_list_ = new Ballot[MAX_BALLOT];
+  num_invalid_ballots_ = 0;
+
+  num_seats_ = 0;
+  voting_method_ = 0;
 }
 
 int Election::parseInput(const char *fname) {
@@ -33,14 +39,15 @@ int Election::parseInput(const char *fname) {
   ifstream input(fname);
   string names;
   getline(input, names);
-  names.erase(names.length() - 1);
+
+  if (names[names.length() - 1] == '\n' || names[names.length() - 1] == '\r') {
+    names.erase(names.length() - 1);
+  }
+
   istringstream iss(names);
   while (getline(iss, names, ',')) {
     candidates_list_[num_candidates_].setCandidate_name(names);
     num_candidates_++;
-  }
-  if (names != "" || names != "\n") {
-    candidates_list_[num_candidates_++].setCandidate_name(names);
   }
 
   string ballots;
@@ -140,7 +147,7 @@ int Election::distributeVote(Ballot bal) {
   int rank = 1;
   int idx;
   while ((idx = bal.findCandidate(rank)) != -1) {
-    if (candidates_list_[idx].getIsWinner() == true) {
+    if (candidates_list_[idx].getStatus() == 1 || candidates_list_[idx].getStatus() == 2) {
       rank++;
       continue;
     }
@@ -155,14 +162,11 @@ int Election::distributeVote(Ballot bal) {
 }
 
 void Election::sortCandidateByVotes() {
-  //Candidate max;
   int max;
   for (int i = 0; i < num_candidates_ - 1; i++) {
-    //max = candidates_list_[i];
     max = i;
     for (int j = i; j < num_candidates_; j++) {
       if (candidates_list_[max].getNum_ballots() < candidates_list_[j].getNum_ballots()) {
-        //max = candidates_list_[j];
         max = j;
       }
     }
@@ -197,4 +201,97 @@ void Election::shuffleBallots(int piles) {
     ballot_list_[i] = ballot_list_[j];
     ballot_list_[j] = tmp;
   }
+}
+
+int Election::calculateDroop() {
+  return ((int)floor(num_ballots_ / (num_seats_ + 1)) + 1);
+}
+
+int Election::runDroop() {
+  if (shuffle_)
+    shuffleBallots();
+
+  Ballot *bal_lst = ballot_list_;
+  int bal_num = num_ballots_;
+  int cand_idx;
+  int quota = calculateDroop();
+  num_winners_ = 0;
+  num_alternatives_ = 0;
+  num_invalid_ballots_ = 0;
+
+  while (bal_num != -1) {
+    for (int i = 0; i < bal_num; i++) {
+      cand_idx = distributeVote(bal_lst[i]);
+
+      if (cand_idx == -1) {  // the ballot is invalid
+        invalid_ballot_list_[num_invalid_ballots_++] = bal_lst[i];
+        continue;
+      }
+
+      if (candidates_list_[cand_idx].getNum_ballots() == quota) {
+        candidates_list_[cand_idx].setIsWinner(true);
+        candidates_list_[cand_idx].setStatus(1);
+        winner_list_[num_winners_++] = candidates_list_[cand_idx];
+      }
+    }
+
+    bal_lst = getLoserBallotList(bal_num, cand_idx);
+
+    while (bal_num == 0) {
+      candidates_list_[cand_idx].setStatus(2);
+      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];
+      bal_lst = getLoserBallotList(bal_num, cand_idx);
+    }
+
+    if (cand_idx != -1) {
+      candidates_list_[cand_idx].setStatus(2);
+      alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];    
+    }
+  }
+
+  // reverse the alternate list
+  for (int i = 0, j = num_alternatives_ - 1; i < j; i++, j--) {
+    Candidate temp = alternate_list_[i];
+    alternate_list_[i] = alternate_list_[j];
+    alternate_list_[j] = temp;
+  }
+
+  return 1;
+}
+
+int Election::getLoser() {
+  int min = -1;
+  int idx = -1;
+
+  for (int i = 0; i < num_candidates_; i++) {
+    if (candidates_list_[i].getStatus() != 0) {
+      continue;
+    }
+
+    if (idx == -1) {
+      min = candidates_list_[i].getNum_ballots();
+      idx = i;
+    }
+
+    if (candidates_list_[i].getNum_ballots() < min) {
+      min = candidates_list_[i].getNum_ballots();
+      idx = i;
+    }
+  }
+
+  return idx;
+}
+
+Ballot* Election::getLoserBallotList(int &n, int &idx) {
+  int i = getLoser();
+
+  if (i == -1) {
+    idx = -1;
+    n = -1;
+    return NULL;
+  }
+
+  idx = i;
+  n = candidates_list_[i].getNum_ballots();
+  return (candidates_list_[i].getBallot_list());
 }

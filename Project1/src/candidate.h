@@ -8,7 +8,7 @@
 #include <iostream>
 #include "ballot.h"
 
-#define MAX_BALLOT 1000
+#define MAX_BALLOT 10000
 
 using namespace std;
 class Candidate {
@@ -54,6 +54,10 @@ class Candidate {
    */
   void setNum_ballots( int num ) { num_ballots_ = num; }
 
+  int getStatus() { return status_; }
+
+  void setStatus(int stat) { status_ = stat; }
+
   /*
    * @brief get a string of Candidate class
    */
@@ -65,7 +69,7 @@ class Candidate {
   string toStringWithVotes();
 
   /*
-   * @brief record a ballot
+   * @brief record a ballot "bal" to the next candidate based on ranks
    */
   void recordBallot(Ballot bal);
  private:
@@ -85,6 +89,10 @@ class Candidate {
    * @brief check if a candidate is a winner
    */
   bool isWinner;
+
+  // current status of a candidate
+  // 0 is normal, 1 is winner, 2 is loser
+  int status_;
 };
 
 #endif  // PROJECT1_SRC_CANDIDATE_H_
