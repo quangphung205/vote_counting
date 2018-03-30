@@ -47,7 +47,7 @@ protected:
    ballot.setBallot_id(10);
    ballot.setNum_candidates(5);
    int ranks[] = {1, 2, 3, 4};
-   char* names[] = {"john", "mary", "bromeo"};
+   char** names = {"john", "mary", "bromeo"};
    ballot.setList_of_ranks(ranks);
    ballot.setList_of_names(names);
 
