@@ -36,7 +36,7 @@ up these problems -- the point is to educate.  It does also not
 attempt to find all problems, or to ensure that everything it does
 find is legitimately a problem.
 
-In particular, we can get very confused by /* and // inside strings!
+In particular, we can get very confused by /** and // inside strings!
 We do a small hack, which is to ignore //'s with "'s after them on the
 same line, but it is far from perfect (in either direction).
 """
@@ -207,8 +207,8 @@ Syntax: cpplint.py [--verbose=#] [--output=emacs|eclipse|vs7|junit]
 
       Examples:
         --exclude=one.cc
-        --exclude=src/*.cc
-        --exclude=src/*.cc --exclude=test/*.cc
+        --exclude=src/**.cc
+        --exclude=src/**.cc --exclude=test/**.cc
 
     extensions=extension,extension,...
       The allowed file extensions that cpplint will check
@@ -1534,7 +1534,7 @@ def CleanseRawStrings(raw_lines):
 def FindNextMultiLineCommentStart(lines, lineix):
   """Find the beginning marker for a multiline comment."""
   while lineix < len(lines):
-    if lines[lineix].strip().startswith('/*'):
+    if lines[lineix].strip().startswith('/**'):
       # Only return this marker if the comment goes beyond this line
       if lines[lineix].strip().find('*/', 2) < 0:
         return lineix
@@ -1556,7 +1556,7 @@ def RemoveMultiLineCommentsFromRange(lines, begin, end):
   # Having // dummy comments makes the lines non-empty, so we will not get
   # unnecessary blank line warnings later in the code.
   for i in range(begin, end):
-    lines[i] = '/**/'
+    lines[i] = '/***/'
 
 
 def RemoveMultiLineComments(filename, lines, error):
@@ -1576,7 +1576,7 @@ def RemoveMultiLineComments(filename, lines, error):
 
 
 def CleanseComments(line):
-  """Removes //-comments and single-line C-style /* */ comments.
+  """Removes //-comments and single-line C-style /** */ comments.
 
   Args:
     line: A line of C++ source.
@@ -1587,7 +1587,7 @@ def CleanseComments(line):
   commentpos = line.find('//')
   if commentpos != -1 and not IsCppString(line[:commentpos]):
     line = line[:commentpos].rstrip()
-  # get rid of /* ... */
+  # get rid of /** ... */
   return _RE_PATTERN_CLEANSE_LINE_C_COMMENTS.sub('', line)
 
 
@@ -2064,7 +2064,7 @@ def CheckForHeaderGuard(filename, clean_lines, error):
 
   # Didn't find the corresponding "//" comment.  If this file does not
   # contain any "//" comments at all, it could be that the compiler
-  # only wants "/**/" comments, look for those instead.
+  # only wants "/***/" comments, look for those instead.
   no_single_line_comments = True
   for i in xrange(1, len(raw_lines) - 1):
     line = raw_lines[i]
@@ -2078,7 +2078,7 @@ def CheckForHeaderGuard(filename, clean_lines, error):
       if match.group(1) == '_':
         # Low severity warning for double trailing underscore
         error(filename, endif_linenum, 'build/header_guard', 0,
-              '#endif line should be "#endif  /* %s */"' % cppvar)
+              '#endif line should be "#endif  /** %s */"' % cppvar)
       return
 
   # Didn't find anything
@@ -2157,9 +2157,9 @@ def CheckForNewlineAtEOF(filename, lines, error):
 
 
 def CheckForMultilineCommentsAndStrings(filename, clean_lines, linenum, error):
-  """Logs an error if we see /* ... */ or "..." that extend past one line.
+  """Logs an error if we see /** ... */ or "..." that extend past one line.
 
-  /* ... */ comments are legit inside macros, for one line.
+  /** ... */ comments are legit inside macros, for one line.
   Otherwise, we prefer // comments, so it's ok to warn about the
   other.  Likewise, it's ok for strings to extend across multiple
   lines, as long as a line continuation character (backslash)
@@ -2179,9 +2179,9 @@ def CheckForMultilineCommentsAndStrings(filename, clean_lines, linenum, error):
   # second (escaped) slash may trigger later \" detection erroneously.
   line = line.replace('\\\\', '')
 
-  if line.count('/*') > line.count('*/'):
+  if line.count('/**') > line.count('*/'):
     error(filename, linenum, 'readability/multiline_comment', 5,
-          'Complex multi-line /*...*/-style comment found. '
+          'Complex multi-line /**...*/-style comment found. '
           'Lint may give bogus warnings.  '
           'Consider replacing these with //-style comments, '
           'with #if 0...#endif, '
@@ -2465,7 +2465,7 @@ class _NamespaceInfo(_BlockInfo):
 
     # Look for matching comment at end of namespace.
     #
-    # Note that we accept C style "/* */" comments for terminating
+    # Note that we accept C style "/** */" comments for terminating
     # namespaces, so that code that terminate namespaces inside
     # preprocessor macros can be cpplint clean.
     #
@@ -4407,7 +4407,7 @@ def CheckAltTokens(filename, clean_lines, linenum, error):
   #
   # TODO(unknown): remove this once cpplint has better support for
   # multi-line comments.
-  if line.find('/*') >= 0 or line.find('*/') >= 0:
+  if line.find('/**') >= 0 or line.find('*/') >= 0:
     return
 
   for match in _ALT_TOKEN_REPLACEMENT_PATTERN.finditer(line):

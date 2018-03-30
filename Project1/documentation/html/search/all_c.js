@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['seenopenbrace',['SeenOpenBrace',['../classcpplint_1_1NestingState.html#a15abc0719a22ca8fbb7a8235f0e22b3e',1,'cpplint::NestingState']]],
+  ['setalternate_5flist',['setAlternate_list',['../classElection.html#a069591e9288769dd363be62b29140843',1,'Election']]],
+  ['setballot_5fid',['setBallot_id',['../classBallot.html#a4ee7baa84508cfd6551fb8d6974955d6',1,'Ballot']]],
+  ['setballot_5flist',['setBallot_list',['../classCandidate.html#a1e3e55cb3e44594f80d7089683f4333a',1,'Candidate::setBallot_list()'],['../classElection.html#a8dff79efabdd45105761c4ccdee3113d',1,'Election::setBallot_list()']]],
+  ['setcandidate_5fname',['setCandidate_name',['../classCandidate.html#a86d0f2ccec370c41834638a7fe0d7177',1,'Candidate']]],
+  ['setcandidates_5flist',['setCandidates_list',['../classElection.html#aa86c7a50b7623975ab28b8d3fa9fcb16',1,'Election']]],
+  ['setcountingstyle',['SetCountingStyle',['../classcpplint_1_1__CppLintState.html#ac2503f2d8a357edd3ca648d219c7317e',1,'cpplint::_CppLintState']]],
+  ['setfilters',['SetFilters',['../classcpplint_1_1__CppLintState.html#a359d4516eac0c1dce6223cf18181ac80',1,'cpplint::_CppLintState']]],
+  ['setiswinner',['setIsWinner',['../classCandidate.html#a9adfa52fb4809e50f33342d9e63c7b74',1,'Candidate']]],
+  ['setlist_5fof_5fnames',['setList_of_names',['../classBallot.html#a0a065a3a5cdf9012240899b5b7d74e34',1,'Ballot']]],
+  ['setlist_5fof_5franks',['setList_of_ranks',['../classBallot.html#a3cff40fe3958d94689df4a92b178bb2a',1,'Ballot']]],
+  ['setnum_5fballots',['setNum_ballots',['../classCandidate.html#a15c9e928438be0c1997627d556556cb6',1,'Candidate::setNum_ballots()'],['../classElection.html#ad493684ee11f3fabe54b19ceaece3b0b',1,'Election::setNum_ballots()']]],
+  ['setnum_5fcandidates',['setNum_candidates',['../classBallot.html#a430f542fc81f87df6ec43a33b364c164',1,'Ballot::setNum_candidates()'],['../classElection.html#aa397a20bc52d99a497fe1344b0fd01d3',1,'Election::setNum_candidates()']]],
+  ['setnum_5fseats',['setNum_seats',['../classElection.html#a3ceb8be4c474c4f3456c44d63edc95b2',1,'Election']]],
+  ['setoutputformat',['SetOutputFormat',['../classcpplint_1_1__CppLintState.html#ab43553d2e2027b58d08a7001c71c0902',1,'cpplint::_CppLintState']]],
+  ['setshuffle',['setShuffle',['../classElection.html#a7940f103d39630fd12948b1ae20cd950',1,'Election']]],
+  ['setstatus',['setStatus',['../classCandidate.html#a52f17081c446df1a0f7da93b066eeab8',1,'Candidate']]],
+  ['setverboselevel',['SetVerboseLevel',['../classcpplint_1_1__CppLintState.html#ad4f97c907cc79e8d60237d0327830588',1,'cpplint::_CppLintState']]],
+  ['setvoting_5fmethod',['setVoting_method',['../classElection.html#a7b0f1f75f8adce2a6c27ddfa26d5cb45',1,'Election']]],
+  ['setwinner_5flist',['setWinner_list',['../classElection.html#ab466e0d577928ebbab77fed6e50a38a9',1,'Election']]],
+  ['split',['Split',['../classcpplint_1_1FileInfo.html#a43f1c5ff1771da52e29c60c114955e72',1,'cpplint::FileInfo']]]
+];

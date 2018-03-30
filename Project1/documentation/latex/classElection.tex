@@ -1,0 +1,433 @@
+\hypertarget{classElection}{}\section{Election Class Reference}
+\label{classElection}\index{Election@{Election}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classElection_a384f3cbb012bb7c7e5344a6f9226f99f}{Election} ()
+\item 
+int \hyperlink{classElection_ad61b43a7ccdc9a1411b1536befd7cb09}{get\+Num\+\_\+candidates} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the number of candidates found in the ballot. \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a494b04f3b0b33cc9d4f384e99d834131}{get\+Num\+\_\+seats} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the number of seats. \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a8e4005023f409d4e61a926e73a45bd53}{get\+Num\+\_\+ballots} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the number of ballots \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a1129f07c2c5b5257434667b3eb9d75e1}{get\+Voting\+\_\+method} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the voting type \end{DoxyCompactList}\item 
+\hyperlink{classCandidate}{Candidate} $\ast$ \hyperlink{classElection_abf93cdb5de1615ab8326793591325ecc}{get\+Candidates\+\_\+list} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the list of candidates found in the ballot \end{DoxyCompactList}\item 
+\hyperlink{classCandidate}{Candidate} $\ast$ \hyperlink{classElection_a9844007dba475a45520a0d1eac47b0b9}{get\+Winner\+\_\+list} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the list of winner \end{DoxyCompactList}\item 
+\hyperlink{classCandidate}{Candidate} $\ast$ \hyperlink{classElection_a5b2af84308132646af8e619cc35cd717}{get\+Alternate\+\_\+list} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the alternate list \end{DoxyCompactList}\item 
+\hyperlink{classBallot}{Ballot} $\ast$ \hyperlink{classElection_a8f61e0da88edce12cd5357a773249b49}{get\+Ballot\+\_\+list} () const 
+\begin{DoxyCompactList}\small\item\em getter method for the list of ballots \end{DoxyCompactList}\item 
+void \hyperlink{classElection_aa397a20bc52d99a497fe1344b0fd01d3}{set\+Num\+\_\+candidates} (int num)
+\begin{DoxyCompactList}\small\item\em setter method for the number of candidates found in the ballot. \end{DoxyCompactList}\item 
+void \hyperlink{classElection_a3ceb8be4c474c4f3456c44d63edc95b2}{set\+Num\+\_\+seats} (int num)
+\begin{DoxyCompactList}\small\item\em setter method for the number of seats. \end{DoxyCompactList}\item 
+void \hyperlink{classElection_ad493684ee11f3fabe54b19ceaece3b0b}{set\+Num\+\_\+ballots} (int num)
+\begin{DoxyCompactList}\small\item\em setter method for the number of ballots \end{DoxyCompactList}\item 
+void \hyperlink{classElection_a7b0f1f75f8adce2a6c27ddfa26d5cb45}{set\+Voting\+\_\+method} (int choice)
+\begin{DoxyCompactList}\small\item\em setter method for the voting method \end{DoxyCompactList}\item 
+void \hyperlink{classElection_aa86c7a50b7623975ab28b8d3fa9fcb16}{set\+Candidates\+\_\+list} (\hyperlink{classCandidate}{Candidate} $\ast$lst)
+\begin{DoxyCompactList}\small\item\em setter method for the list of candidates found in the ballot \end{DoxyCompactList}\item 
+void \hyperlink{classElection_ab466e0d577928ebbab77fed6e50a38a9}{set\+Winner\+\_\+list} (\hyperlink{classCandidate}{Candidate} $\ast$lst)
+\begin{DoxyCompactList}\small\item\em setter method for the list of winner \end{DoxyCompactList}\item 
+void \hyperlink{classElection_a069591e9288769dd363be62b29140843}{set\+Alternate\+\_\+list} (\hyperlink{classCandidate}{Candidate} $\ast$lst)
+\begin{DoxyCompactList}\small\item\em setter method for the alternate list \end{DoxyCompactList}\item 
+void \hyperlink{classElection_a8dff79efabdd45105761c4ccdee3113d}{set\+Ballot\+\_\+list} (\hyperlink{classBallot}{Ballot} $\ast$lst)
+\begin{DoxyCompactList}\small\item\em setter method for the list of ballots \end{DoxyCompactList}\item 
+void \hyperlink{classElection_a7940f103d39630fd12948b1ae20cd950}{set\+Shuffle} (bool stat)
+\begin{DoxyCompactList}\small\item\em setter method for the shuffle option \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a68ffe21f4857d0f5dc014231360bde3c}{parse\+Input} (const char $\ast$fname)
+\begin{DoxyCompactList}\small\item\em proccess input file \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a712d4680504d5e8d7b8491f7060a1e98}{get\+\_\+voting\+\_\+method} ()
+\begin{DoxyCompactList}\small\item\em get a voting method \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a6d164108961bfa211d24e8259515bc0f}{run\+Plurality} ()
+\begin{DoxyCompactList}\small\item\em run Plurality method \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a56e4bee7e1949b2bb25f84e74b2f7f1f}{calculate\+Droop} ()\hypertarget{classElection_a56e4bee7e1949b2bb25f84e74b2f7f1f}{}\label{classElection_a56e4bee7e1949b2bb25f84e74b2f7f1f}
+
+\begin{DoxyCompactList}\small\item\em calculate the droop quota \end{DoxyCompactList}\item 
+int \hyperlink{classElection_af2fdcf119a21d5fdcdafd9dc571248fa}{run\+Droop} ()\hypertarget{classElection_af2fdcf119a21d5fdcdafd9dc571248fa}{}\label{classElection_af2fdcf119a21d5fdcdafd9dc571248fa}
+
+\begin{DoxyCompactList}\small\item\em run Droop method \end{DoxyCompactList}\item 
+int \hyperlink{classElection_a4c48413712894394b122793c3b8da9a1}{write\+To\+File} (const char $\ast$fname)
+\begin{DoxyCompactList}\small\item\em write a list of winners and losers to a file \end{DoxyCompactList}\item 
+int \hyperlink{classElection_aff17d52000a3b3f4a0272fa98529f0c6}{generate\+Audit\+File} (const char $\ast$fname)
+\begin{DoxyCompactList}\small\item\em write a list of winners and losers and their associated votes to a file \end{DoxyCompactList}\item 
+string \hyperlink{classElection_aad4de7f2d406fa8dd8e2df8dbd8d747f}{to\+String} ()
+\begin{DoxyCompactList}\small\item\em get a string format of a \hyperlink{classElection}{Election} object \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Election@{Election}!Election@{Election}}
+\index{Election@{Election}!Election@{Election}}
+\subsubsection[{\texorpdfstring{Election()}{Election()}}]{\setlength{\rightskip}{0pt plus 5cm}Election\+::\+Election (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classElection_a384f3cbb012bb7c7e5344a6f9226f99f}{}\label{classElection_a384f3cbb012bb7c7e5344a6f9226f99f}
+initialize all members of the \hyperlink{classElection}{Election} class
+
+\subsection{Member Function Documentation}
+\index{Election@{Election}!generate\+Audit\+File@{generate\+Audit\+File}}
+\index{generate\+Audit\+File@{generate\+Audit\+File}!Election@{Election}}
+\subsubsection[{\texorpdfstring{generate\+Audit\+File(const char $\ast$fname)}{generateAuditFile(const char *fname)}}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::generate\+Audit\+File (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fname}
+\end{DoxyParamCaption}
+)}\hypertarget{classElection_aff17d52000a3b3f4a0272fa98529f0c6}{}\label{classElection_aff17d52000a3b3f4a0272fa98529f0c6}
+
+
+write a list of winners and losers and their associated votes to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & name of an audit file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 otherwise 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+\_\+voting\+\_\+method@{get\+\_\+voting\+\_\+method}}
+\index{get\+\_\+voting\+\_\+method@{get\+\_\+voting\+\_\+method}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+\_\+voting\+\_\+method()}{get_voting_method()}}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::get\+\_\+voting\+\_\+method (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a712d4680504d5e8d7b8491f7060a1e98}{}\label{classElection_a712d4680504d5e8d7b8491f7060a1e98}
+
+
+get a voting method 
+
+\begin{DoxyReturn}{Returns}
+voting method 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Alternate\+\_\+list@{get\+Alternate\+\_\+list}}
+\index{get\+Alternate\+\_\+list@{get\+Alternate\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Alternate\+\_\+list() const }{getAlternate_list() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Candidate}$\ast$ Election\+::get\+Alternate\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a5b2af84308132646af8e619cc35cd717}{}\label{classElection_a5b2af84308132646af8e619cc35cd717}
+
+
+getter method for the alternate list 
+
+\begin{DoxyReturn}{Returns}
+alternate\+\_\+list\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Ballot\+\_\+list@{get\+Ballot\+\_\+list}}
+\index{get\+Ballot\+\_\+list@{get\+Ballot\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Ballot\+\_\+list() const }{getBallot_list() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ballot}$\ast$ Election\+::get\+Ballot\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a8f61e0da88edce12cd5357a773249b49}{}\label{classElection_a8f61e0da88edce12cd5357a773249b49}
+
+
+getter method for the list of ballots 
+
+\begin{DoxyReturn}{Returns}
+ballot\+\_\+list\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Candidates\+\_\+list@{get\+Candidates\+\_\+list}}
+\index{get\+Candidates\+\_\+list@{get\+Candidates\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Candidates\+\_\+list() const }{getCandidates_list() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Candidate}$\ast$ Election\+::get\+Candidates\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_abf93cdb5de1615ab8326793591325ecc}{}\label{classElection_abf93cdb5de1615ab8326793591325ecc}
+
+
+getter method for the list of candidates found in the ballot 
+
+\begin{DoxyReturn}{Returns}
+candidates\+\_\+list\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Num\+\_\+ballots@{get\+Num\+\_\+ballots}}
+\index{get\+Num\+\_\+ballots@{get\+Num\+\_\+ballots}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Num\+\_\+ballots() const }{getNum_ballots() const }}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::get\+Num\+\_\+ballots (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a8e4005023f409d4e61a926e73a45bd53}{}\label{classElection_a8e4005023f409d4e61a926e73a45bd53}
+
+
+getter method for the number of ballots 
+
+\begin{DoxyReturn}{Returns}
+num\+\_\+ballots\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Num\+\_\+candidates@{get\+Num\+\_\+candidates}}
+\index{get\+Num\+\_\+candidates@{get\+Num\+\_\+candidates}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Num\+\_\+candidates() const }{getNum_candidates() const }}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::get\+Num\+\_\+candidates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_ad61b43a7ccdc9a1411b1536befd7cb09}{}\label{classElection_ad61b43a7ccdc9a1411b1536befd7cb09}
+
+
+getter method for the number of candidates found in the ballot. 
+
+\begin{DoxyReturn}{Returns}
+num\+\_\+candidates\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Num\+\_\+seats@{get\+Num\+\_\+seats}}
+\index{get\+Num\+\_\+seats@{get\+Num\+\_\+seats}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Num\+\_\+seats() const }{getNum_seats() const }}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::get\+Num\+\_\+seats (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a494b04f3b0b33cc9d4f384e99d834131}{}\label{classElection_a494b04f3b0b33cc9d4f384e99d834131}
+
+
+getter method for the number of seats. 
+
+\begin{DoxyReturn}{Returns}
+num\+\_\+seats\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Voting\+\_\+method@{get\+Voting\+\_\+method}}
+\index{get\+Voting\+\_\+method@{get\+Voting\+\_\+method}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Voting\+\_\+method() const }{getVoting_method() const }}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::get\+Voting\+\_\+method (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a1129f07c2c5b5257434667b3eb9d75e1}{}\label{classElection_a1129f07c2c5b5257434667b3eb9d75e1}
+
+
+getter method for the voting type 
+
+\begin{DoxyReturn}{Returns}
+voting\+\_\+method\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!get\+Winner\+\_\+list@{get\+Winner\+\_\+list}}
+\index{get\+Winner\+\_\+list@{get\+Winner\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{get\+Winner\+\_\+list() const }{getWinner_list() const }}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Candidate}$\ast$ Election\+::get\+Winner\+\_\+list (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a9844007dba475a45520a0d1eac47b0b9}{}\label{classElection_a9844007dba475a45520a0d1eac47b0b9}
+
+
+getter method for the list of winner 
+
+\begin{DoxyReturn}{Returns}
+winner\+\_\+list\+\_\+ 
+\end{DoxyReturn}
+\index{Election@{Election}!parse\+Input@{parse\+Input}}
+\index{parse\+Input@{parse\+Input}!Election@{Election}}
+\subsubsection[{\texorpdfstring{parse\+Input(const char $\ast$fname)}{parseInput(const char *fname)}}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::parse\+Input (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fname}
+\end{DoxyParamCaption}
+)}\hypertarget{classElection_a68ffe21f4857d0f5dc014231360bde3c}{}\label{classElection_a68ffe21f4857d0f5dc014231360bde3c}
+
+
+proccess input file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & C\+SV file name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 error occurs 
+\end{DoxyReturn}
+\index{Election@{Election}!run\+Plurality@{run\+Plurality}}
+\index{run\+Plurality@{run\+Plurality}!Election@{Election}}
+\subsubsection[{\texorpdfstring{run\+Plurality()}{runPlurality()}}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::run\+Plurality (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classElection_a6d164108961bfa211d24e8259515bc0f}{}\label{classElection_a6d164108961bfa211d24e8259515bc0f}
+
+
+run Plurality method 
+
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 otherwise 
+\end{DoxyReturn}
+\index{Election@{Election}!set\+Alternate\+\_\+list@{set\+Alternate\+\_\+list}}
+\index{set\+Alternate\+\_\+list@{set\+Alternate\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Alternate\+\_\+list(\+Candidate $\ast$lst)}{setAlternate_list(Candidate *lst)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Alternate\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf Candidate} $\ast$}]{lst}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a069591e9288769dd363be62b29140843}{}\label{classElection_a069591e9288769dd363be62b29140843}
+
+
+setter method for the alternate list 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lst} & a pointer that points to a list of losers \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Ballot\+\_\+list@{set\+Ballot\+\_\+list}}
+\index{set\+Ballot\+\_\+list@{set\+Ballot\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Ballot\+\_\+list(\+Ballot $\ast$lst)}{setBallot_list(Ballot *lst)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Ballot\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf Ballot} $\ast$}]{lst}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a8dff79efabdd45105761c4ccdee3113d}{}\label{classElection_a8dff79efabdd45105761c4ccdee3113d}
+
+
+setter method for the list of ballots 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lst} & a pointer that points to a list of ballots \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Candidates\+\_\+list@{set\+Candidates\+\_\+list}}
+\index{set\+Candidates\+\_\+list@{set\+Candidates\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Candidates\+\_\+list(\+Candidate $\ast$lst)}{setCandidates_list(Candidate *lst)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Candidates\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf Candidate} $\ast$}]{lst}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_aa86c7a50b7623975ab28b8d3fa9fcb16}{}\label{classElection_aa86c7a50b7623975ab28b8d3fa9fcb16}
+
+
+setter method for the list of candidates found in the ballot 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lst} & a pointer that points to a list of candidates \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Num\+\_\+ballots@{set\+Num\+\_\+ballots}}
+\index{set\+Num\+\_\+ballots@{set\+Num\+\_\+ballots}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Num\+\_\+ballots(int num)}{setNum_ballots(int num)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Num\+\_\+ballots (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_ad493684ee11f3fabe54b19ceaece3b0b}{}\label{classElection_ad493684ee11f3fabe54b19ceaece3b0b}
+
+
+setter method for the number of ballots 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & a number of ballots \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Num\+\_\+candidates@{set\+Num\+\_\+candidates}}
+\index{set\+Num\+\_\+candidates@{set\+Num\+\_\+candidates}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Num\+\_\+candidates(int num)}{setNum_candidates(int num)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Num\+\_\+candidates (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_aa397a20bc52d99a497fe1344b0fd01d3}{}\label{classElection_aa397a20bc52d99a497fe1344b0fd01d3}
+
+
+setter method for the number of candidates found in the ballot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & a number of candidates need to be set \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Num\+\_\+seats@{set\+Num\+\_\+seats}}
+\index{set\+Num\+\_\+seats@{set\+Num\+\_\+seats}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Num\+\_\+seats(int num)}{setNum_seats(int num)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Num\+\_\+seats (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a3ceb8be4c474c4f3456c44d63edc95b2}{}\label{classElection_a3ceb8be4c474c4f3456c44d63edc95b2}
+
+
+setter method for the number of seats. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & a number of seats needed to be set \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Shuffle@{set\+Shuffle}}
+\index{set\+Shuffle@{set\+Shuffle}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Shuffle(bool stat)}{setShuffle(bool stat)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Shuffle (
+\begin{DoxyParamCaption}
+\item[{bool}]{stat}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a7940f103d39630fd12948b1ae20cd950}{}\label{classElection_a7940f103d39630fd12948b1ae20cd950}
+
+
+setter method for the shuffle option 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stat} & the status of shuffling option (true/false) \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Voting\+\_\+method@{set\+Voting\+\_\+method}}
+\index{set\+Voting\+\_\+method@{set\+Voting\+\_\+method}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Voting\+\_\+method(int choice)}{setVoting_method(int choice)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Voting\+\_\+method (
+\begin{DoxyParamCaption}
+\item[{int}]{choice}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_a7b0f1f75f8adce2a6c27ddfa26d5cb45}{}\label{classElection_a7b0f1f75f8adce2a6c27ddfa26d5cb45}
+
+
+setter method for the voting method 
+
+
+\begin{DoxyParams}{Parameters}
+{\em choice} & a voting method \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!set\+Winner\+\_\+list@{set\+Winner\+\_\+list}}
+\index{set\+Winner\+\_\+list@{set\+Winner\+\_\+list}!Election@{Election}}
+\subsubsection[{\texorpdfstring{set\+Winner\+\_\+list(\+Candidate $\ast$lst)}{setWinner_list(Candidate *lst)}}]{\setlength{\rightskip}{0pt plus 5cm}void Election\+::set\+Winner\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf Candidate} $\ast$}]{lst}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classElection_ab466e0d577928ebbab77fed6e50a38a9}{}\label{classElection_ab466e0d577928ebbab77fed6e50a38a9}
+
+
+setter method for the list of winner 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lst} & a pointer that points to a list of winners \\
+\hline
+\end{DoxyParams}
+\index{Election@{Election}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Election@{Election}}
+\subsubsection[{\texorpdfstring{to\+String()}{toString()}}]{\setlength{\rightskip}{0pt plus 5cm}string Election\+::to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classElection_aad4de7f2d406fa8dd8e2df8dbd8d747f}{}\label{classElection_aad4de7f2d406fa8dd8e2df8dbd8d747f}
+
+
+get a string format of a \hyperlink{classElection}{Election} object 
+
+\begin{DoxyReturn}{Returns}
+a string format 
+\end{DoxyReturn}
+string format to return\+: candidate 1 name candidate 2 name candidate n name ballot 1 ballot 2 ballot n\index{Election@{Election}!write\+To\+File@{write\+To\+File}}
+\index{write\+To\+File@{write\+To\+File}!Election@{Election}}
+\subsubsection[{\texorpdfstring{write\+To\+File(const char $\ast$fname)}{writeToFile(const char *fname)}}]{\setlength{\rightskip}{0pt plus 5cm}int Election\+::write\+To\+File (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{fname}
+\end{DoxyParamCaption}
+)}\hypertarget{classElection_a4c48413712894394b122793c3b8da9a1}{}\label{classElection_a4c48413712894394b122793c3b8da9a1}
+
+
+write a list of winners and losers to a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fname} & name of an output file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if successful, 0 otherwise 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/election.\+h\item 
+src/election.\+cc\end{DoxyCompactItemize}
