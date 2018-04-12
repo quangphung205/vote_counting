@@ -142,6 +142,8 @@ int Election::generateAuditFile(const char *fname) {
 }
 
 int Election::runPlurality() {
+  // user story #2, Task #2
+  shuffleBallots();
   // distribute each vote to each corresponding candidate
   for (int i = 0; i < num_ballots_; i++) {
     distributeVote(ballot_list_[i]);
@@ -259,7 +261,8 @@ int Election::calculateDroop() {
 
 int Election::runDroop() {
   // shuffle the ballot
-  if (shuffle_)
+  // user story #2, Task #2
+  // if (shuffle_)
     shuffleBallots();
 
   Ballot *bal_lst = ballot_list_;
