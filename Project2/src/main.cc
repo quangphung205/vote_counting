@@ -48,12 +48,15 @@ int main(int argc, char const *argv[]) {
   }
 
   // ask if user wants to shuffle the ballots
+  /*
+  User story #2, task #1 - erase shuffle
   char isShuffle;
   cout << "Do you want to shuffle the ballots? (y/n): ";
   cin >> isShuffle;
   if (isShuffle == 'y' || isShuffle == 'Y') {
-    election->setShuffle(true);
+   election->setShuffle(true);
   } else { election->setShuffle(false); }
+  */
 
   // let user choose the voting method
   if (election->get_voting_method() == 1) {
