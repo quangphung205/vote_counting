@@ -13,12 +13,10 @@ typedef struct Input {
   int algorithm;  // 1 for Plurality, 2 for Droop
 } Input;
 
-//Input* getInput();
 int getInput(Election *election);
 bool isValidInput(Input *input);
 
 int main(int argc, char const *argv[]) {
-  /* code */
   if (argc < 2) {
     cout << "Usage: ./execu <file_name>" << endl;
     return 1;
@@ -26,22 +24,17 @@ int main(int argc, char const *argv[]) {
 
   Election *election = new Election();
 
-  /*
-   * @TODO Input file processing
-   * param: argv[1] holds an input file name
-   */
+  // process input file
   if (election->parseInput(argv[1]) == 0) {
     cout << "Fail to process input file" << endl;
     return 1;
   }
-  //cout << election->toString() << endl;
-  //election->shuffleBallots();
-  //cout << election->toString() << endl;
-  //return 1;
+
   cout << "Processed input file successfully!" << endl;
   cout << "No. of candidates = " << election->getNum_candidates() << endl;
   cout << "No. of ballots = " << election->getNum_ballots() << endl;
 
+  // get user input
   while (getInput(election) == -1) {
     cout << "Do you want to continue? (y/n): ";
     char ans;
@@ -54,27 +47,31 @@ int main(int argc, char const *argv[]) {
     return 1;
   }
 
+  // ask if user wants to shuffle the ballots
+  char isShuffle;
+  cout << "Do you want to shuffle the ballots? (y/n): ";
+  cin >> isShuffle;
+  if (isShuffle == 'y' || isShuffle == 'Y') {
+    election->setShuffle(true);
+  } else { election->setShuffle(false); }
+
+  // let user choose the voting method
   if (election->get_voting_method() == 1) {
-    cout << "Running the Plurality method..." << endl;
+    cout << endl << "Running the Plurality method..." << endl;
     election->runPlurality();
   } else {
-    cout << "Running the Droop Quota method..." << endl;
+    cout << endl << "Running the Droop Quota method..." << endl;
     election->runDroop();
   }
 
-  //election->writeToFile("output.txt");
-  //election->generateAuditFile("audit.txt");
-  //cout << election->toString() << endl;
 
   char c;
-  char s[255];
+  char file_name[255];  // output file name
   cout << "Vote counting process is complete." << endl;
-  //cout << "Do you want to print it to the screen (y/n)? ";
-  //cin >> c;
   cout << "Enter a name for the output file: ";
-  cin >> s;
+  cin >> file_name;
 
-  if (election->writeToFile(s) == 1) {
+  if (election->writeToFile(file_name) == 1) {
     cout << "Write to file successfully" << endl;
   } else {
     cout << "Cannot write to output file" << endl;
@@ -85,8 +82,8 @@ int main(int argc, char const *argv[]) {
   cin >> c;
   if (c == 'y' || c == 'Y') {
     cout << "Enter a name for the audit file: ";
-    cin >> s;
-    election->generateAuditFile(s);
+    cin >> file_name;
+    election->generateAuditFile(file_name);
     cout << "Generate the audit file successfully" << endl;
   }
 
@@ -95,12 +92,10 @@ int main(int argc, char const *argv[]) {
   return 0;
 }
 
+// check for user inputs whether they match the one in the csv file
 int getInput(Election *election) {
   int nCandidate, nSeat, nBallot, algorithm;
 
-  // @TODO: error handling
-  //cout << "main.cc::getInput Need to implement" << endl;
-  //cout << "Implement error handling where user input is not valid or does not match CSV file" << endl;
   cout << "Enter a number of candidates: ";
   cin >> nCandidate;
   if (nCandidate != election->getNum_candidates()) {
@@ -131,18 +126,8 @@ int getInput(Election *election) {
     return -1;
   }
 
-  //election->set_num_candidate(nCandidate);
   election->setNum_seats(nSeat);
   election->setVoting_method(algorithm);
-  //election->set_num_ballots(nBalot);
 
   return 1;
-}
-
-bool isValidInput(Input *input) {
-  // @TODO check for invalid inputs
-  // ...
-
-  cout << "main.cc::isValidInput Need to Implement" << endl;
-  return true;
 }
