@@ -5,6 +5,8 @@
 #define PROJECT1_SRC_ELECTION_H_
 
 #include <iostream>
+#include <ctime>
+#include <iomanip>
 #include "ballot.h"
 #include "candidate.h"
 
@@ -137,17 +139,30 @@ class Election {
 
   /**
    * \brief write a list of winners and losers to a file
+   *
    * @param fname name of an output file
+   *
    * @return 1 if successful, 0 otherwise
    */
   int writeToFile(const char *fname);
 
   /**
    * \brief write a list of winners and losers and their associated votes to a file
+   *
    * @param fname name of an audit file
+   *
    * @return 1 if successful, 0 otherwise
    */
   int generateAuditFile(const char *fname);
+
+  /**
+   * @brief create a report file
+   *
+   * @param fname name of a report
+   *
+   * @return 1 if successful, 0 otherwise
+   */
+  int generateReportFile(const char *fname);
 
   /**
    * \brief get a string format of a Election object
@@ -184,7 +199,7 @@ class Election {
      /**
       * \brief sort all candidates in the list based on how many votes they have
       */
-      
+
 public:
      void sortCandidateByVotes();
 

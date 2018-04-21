@@ -20,6 +20,7 @@ string Ballot::toString() {
      Count: <rank 1> <rank 2> ... <rank n>
    */
   char buff[10];
+  /*
   sprintf(buff, "%d", ballot_id_);
   string result = "ID: " + string(buff) + " ";
   sprintf(buff, "%d", num_candidates_);
@@ -27,6 +28,13 @@ string Ballot::toString() {
   for (int i = 0; i < num_candidates_; i++) {
     sprintf(buff, "%d", list_of_ranks_[i]);
     result += (string(buff) + " ");
+  }
+  */
+  sprintf(buff, "%d: ", ballot_id_);
+  string result = string(buff);
+  for (int i = 0; i < num_candidates_; i++) {
+    sprintf(buff, "%d ", list_of_ranks_[i]);
+    result += string(buff);
   }
   return result;
 }
@@ -40,4 +48,15 @@ int Ballot::findCandidate(int rank) {
   }
 
   return -1;
+}
+
+bool Ballot::isValid() {
+  int count = 0;
+  for (int i = 0; i < num_candidates_; i++) {
+    if (list_of_ranks_[i] > 0) {
+      count++;
+    }
+  }
+
+  return (count >= ((num_candidates_ + 1) / 2));
 }

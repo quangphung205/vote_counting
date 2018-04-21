@@ -5,7 +5,7 @@
 #include "election.h"
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <cstring>
 #include <sstream>
 #include <math.h>
 
@@ -46,6 +46,19 @@ int Election::parseInput(const char *fname) {
 
   // read an input file line by line
   ifstream input(fname);
+  input >> num_candidates_ >> num_seats_ >> num_ballots_;
+  num_candidates_ = 0;
+  num_ballots_ = 0;
+  string method;
+  getline(input, method);  // read and ignore the new line character
+  getline(input, method);
+  if (method == "P\n" || method == "p\n"
+     || method == "P" || method == "p") {
+    voting_method_ = 1;
+  } else {
+    voting_method_ = 2;
+  }
+
   string names;
 
   // the first line contains all candidate names
@@ -116,6 +129,14 @@ int Election::writeToFile(const char *fname) {
   for (int i = 0; i < num_alternatives_; i++) {
     output << alternate_list_[i].toString() << endl;
   }
+
+  output << endl << "Invalidated ballots" << endl;
+  output << "Format: <ballot ID>: <list of ranks>" << endl;
+  for (int i = 0; i < num_invalid_ballots_; i++) {
+    output << invalid_ballot_list_[i].toString() << endl;
+  }
+
+  output.close();
   return 1;
 }
 
@@ -138,13 +159,44 @@ int Election::generateAuditFile(const char *fname) {
   for (int i = 0; i < num_alternatives_; i++) {
     output << alternate_list_[i].toStringWithVotes() << endl;
   }
+
+  output.close();
+  return 1;
+}
+
+int Election::generateReportFile(const char *fname) {
+  if (fname == NULL) {
+    return -1;
+  }
+
+  auto t = time(nullptr);
+  auto tm = *localtime(&t);
+
+  ofstream output(fname);
+  output << put_time(&tm, "%m-%d-%Y") << endl;
+  output << "Type: " << ((voting_method_ == 1) ? "Plurality"
+                         : "Droop") << endl;
+  output << "Candidates: ";
+  for (int i = 0; i < num_candidates_; i++) {
+    output << candidates_list_[i].toString() << " ";
+  }
+  output << endl;
+  output << "No. of seats: " << num_seats_ << endl;
+
+  output << endl << "Winners list" << endl;
+  for (int i = 0; i < num_winners_; i++) {
+    output << candidates_list_[i].toString() << endl;
+  }
   return 1;
 }
 
 int Election::runPlurality() {
   // user story #2, Task #2
-  shuffleBallots();
+  //shuffleBallots();
   // distribute each vote to each corresponding candidate
+  num_winners_ = num_seats_;
+  num_alternatives_ = num_candidates_ - num_seats_;
+
   for (int i = 0; i < num_ballots_; i++) {
     distributeVote(ballot_list_[i]);
   }
@@ -184,6 +236,11 @@ string Election::toString() {
 }
 
 int Election::distributeVote(Ballot bal) {
+  if (bal.isValid() == false) {
+    invalid_ballot_list_[num_invalid_ballots_++] = bal;
+    return -1;
+  }
+
   int rank = 1;
   int idx;
 
@@ -263,7 +320,7 @@ int Election::runDroop() {
   // shuffle the ballot
   // user story #2, Task #2
   // if (shuffle_)
-    shuffleBallots();
+  //shuffleBallots();
 
   Ballot *bal_lst = ballot_list_;
   int bal_num = num_ballots_;

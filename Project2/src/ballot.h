@@ -66,6 +66,13 @@ class Ballot {
     * @return an index of a candidate, -1 if fails
     */
    int findCandidate(int rank);
+
+   /**
+    * @brief check the validity of a ballot
+    *
+    * @return true if valid ballot, false otherwise
+    */
+   bool isValid();
  private:
    /**
     * \brief an array containing each candidate name.

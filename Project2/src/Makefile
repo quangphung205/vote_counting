@@ -11,4 +11,4 @@ all: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	rm *.o execu
+	rm *.o execu audit report result
