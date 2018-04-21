@@ -58,5 +58,6 @@ bool Ballot::isValid() {
     }
   }
 
+  //return (count >= ((num_candidates_ + 1) / 2));
   return (count >= ((num_candidates_ + 1) / 2));
 }

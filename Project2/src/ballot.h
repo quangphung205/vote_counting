@@ -73,6 +73,20 @@ class Ballot {
     * @return true if valid ballot, false otherwise
     */
    bool isValid();
+
+   /**
+    * @brief get the current validity of a ballot
+    *
+    * @return current validity status of a ballot
+    */
+   bool getValidity() { return is_valid_; }
+
+   /**
+    * @brief set the current validity of a ballot
+    *
+    * @param current validity status of a ballot
+    */
+   void setValidity(bool val) { is_valid_ = val; }
  private:
    /**
     * \brief an array containing each candidate name.
@@ -91,6 +105,10 @@ class Ballot {
     * \brief the unique identifier of a particular ballot
     */
    int ballot_id_;
+   /**
+    * @brief the validity of a ballot
+    */
+   bool is_valid_{true};
 };
 
 #endif  // PROJECT1_SRC_BALLOT_H_

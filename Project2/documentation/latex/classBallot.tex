@@ -1,0 +1,218 @@
+\hypertarget{classBallot}{}\section{Ballot Class Reference}
+\label{classBallot}\index{Ballot@{Ballot}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classBallot_af9078126260b3f58ea91f6b82797396b}{Ballot} ()
+\item 
+char $\ast$$\ast$ \hyperlink{classBallot_af4021279872b0181781851a6c06ebd5e}{get\+List\+\_\+of\+\_\+names} ()
+\begin{DoxyCompactList}\small\item\em getter method for the array containing each candidate name. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classBallot_a05ca0a7c87e67363243a4da0421caf73}{get\+List\+\_\+of\+\_\+ranks} ()
+\begin{DoxyCompactList}\small\item\em getter method for the array containing each candidate\textquotesingle{}s rankings. Note, a blank is interpreted as a 0. \end{DoxyCompactList}\item 
+int \hyperlink{classBallot_abec0327c6e8fadc5acf2351986706a64}{get\+Num\+\_\+candidates} ()
+\begin{DoxyCompactList}\small\item\em getter method for the number of candidates found in the ballot \end{DoxyCompactList}\item 
+int \hyperlink{classBallot_a5b9118451032c9f769fdf1b65b10c755}{get\+Ballot\+\_\+id} ()
+\begin{DoxyCompactList}\small\item\em getter method for ballot\+\_\+id\+\_\+ \end{DoxyCompactList}\item 
+void \hyperlink{classBallot_a0a065a3a5cdf9012240899b5b7d74e34}{set\+List\+\_\+of\+\_\+names} (char $\ast$$\ast$names)
+\begin{DoxyCompactList}\small\item\em setter method for the array containing each candidate name. \end{DoxyCompactList}\item 
+void \hyperlink{classBallot_a3cff40fe3958d94689df4a92b178bb2a}{set\+List\+\_\+of\+\_\+ranks} (int $\ast$lst)
+\begin{DoxyCompactList}\small\item\em setter method for the array containing each candidate\textquotesingle{}s rankings. \end{DoxyCompactList}\item 
+void \hyperlink{classBallot_a430f542fc81f87df6ec43a33b364c164}{set\+Num\+\_\+candidates} (int num)
+\begin{DoxyCompactList}\small\item\em setter method for number of candidates found in the ballot. \end{DoxyCompactList}\item 
+void \hyperlink{classBallot_a4ee7baa84508cfd6551fb8d6974955d6}{set\+Ballot\+\_\+id} (int id\+\_\+)
+\begin{DoxyCompactList}\small\item\em setter method for ballot\+\_\+id\+\_\+. \end{DoxyCompactList}\item 
+string \hyperlink{classBallot_aec0bd052daf317281fd0989af273bbcc}{to\+String} ()
+\begin{DoxyCompactList}\small\item\em get a string of \hyperlink{classBallot}{Ballot} class \end{DoxyCompactList}\item 
+int \hyperlink{classBallot_aa18a30fb20e83449878f587e66c27960}{find\+Candidate} (int rank)
+\begin{DoxyCompactList}\small\item\em find a candidate whose rank is specified in a list\+\_\+of\+\_\+ranks\+\_\+ \end{DoxyCompactList}\item 
+bool \hyperlink{classBallot_a2fecab45faac9e47e6c855a3bb227c58}{is\+Valid} ()
+\begin{DoxyCompactList}\small\item\em check the validity of a ballot \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Ballot@{Ballot}!Ballot@{Ballot}}
+\index{Ballot@{Ballot}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{Ballot()}{Ballot()}}]{\setlength{\rightskip}{0pt plus 5cm}Ballot\+::\+Ballot (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classBallot_af9078126260b3f58ea91f6b82797396b}{}\label{classBallot_af9078126260b3f58ea91f6b82797396b}
+\begin{DoxyCopyright}{Copyright}
+2018 C\+S\+CI 5801 Team 09, All rights reserved. 
+\end{DoxyCopyright}
+
+
+\subsection{Member Function Documentation}
+\index{Ballot@{Ballot}!find\+Candidate@{find\+Candidate}}
+\index{find\+Candidate@{find\+Candidate}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{find\+Candidate(int rank)}{findCandidate(int rank)}}]{\setlength{\rightskip}{0pt plus 5cm}int Ballot\+::find\+Candidate (
+\begin{DoxyParamCaption}
+\item[{int}]{rank}
+\end{DoxyParamCaption}
+)}\hypertarget{classBallot_aa18a30fb20e83449878f587e66c27960}{}\label{classBallot_aa18a30fb20e83449878f587e66c27960}
+
+
+find a candidate whose rank is specified in a list\+\_\+of\+\_\+ranks\+\_\+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rank} & a rank of candidate that we want to find \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+an index of a candidate, -\/1 if fails 
+\end{DoxyReturn}
+\index{Ballot@{Ballot}!get\+Ballot\+\_\+id@{get\+Ballot\+\_\+id}}
+\index{get\+Ballot\+\_\+id@{get\+Ballot\+\_\+id}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{get\+Ballot\+\_\+id()}{getBallot_id()}}]{\setlength{\rightskip}{0pt plus 5cm}int Ballot\+::get\+Ballot\+\_\+id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_a5b9118451032c9f769fdf1b65b10c755}{}\label{classBallot_a5b9118451032c9f769fdf1b65b10c755}
+
+
+getter method for ballot\+\_\+id\+\_\+ 
+
+\begin{DoxyReturn}{Returns}
+ballot\+\_\+id\+\_\+ 
+\end{DoxyReturn}
+\index{Ballot@{Ballot}!get\+List\+\_\+of\+\_\+names@{get\+List\+\_\+of\+\_\+names}}
+\index{get\+List\+\_\+of\+\_\+names@{get\+List\+\_\+of\+\_\+names}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{get\+List\+\_\+of\+\_\+names()}{getList_of_names()}}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$$\ast$ Ballot\+::get\+List\+\_\+of\+\_\+names (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_af4021279872b0181781851a6c06ebd5e}{}\label{classBallot_af4021279872b0181781851a6c06ebd5e}
+
+
+getter method for the array containing each candidate name. 
+
+\begin{DoxyReturn}{Returns}
+list\+\_\+of\+\_\+names\+\_\+ 
+\end{DoxyReturn}
+\index{Ballot@{Ballot}!get\+List\+\_\+of\+\_\+ranks@{get\+List\+\_\+of\+\_\+ranks}}
+\index{get\+List\+\_\+of\+\_\+ranks@{get\+List\+\_\+of\+\_\+ranks}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{get\+List\+\_\+of\+\_\+ranks()}{getList_of_ranks()}}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ Ballot\+::get\+List\+\_\+of\+\_\+ranks (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_a05ca0a7c87e67363243a4da0421caf73}{}\label{classBallot_a05ca0a7c87e67363243a4da0421caf73}
+
+
+getter method for the array containing each candidate\textquotesingle{}s rankings. Note, a blank is interpreted as a 0. 
+
+\begin{DoxyReturn}{Returns}
+list\+\_\+of\+\_\+ranks\+\_\+ 
+\end{DoxyReturn}
+\index{Ballot@{Ballot}!get\+Num\+\_\+candidates@{get\+Num\+\_\+candidates}}
+\index{get\+Num\+\_\+candidates@{get\+Num\+\_\+candidates}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{get\+Num\+\_\+candidates()}{getNum_candidates()}}]{\setlength{\rightskip}{0pt plus 5cm}int Ballot\+::get\+Num\+\_\+candidates (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_abec0327c6e8fadc5acf2351986706a64}{}\label{classBallot_abec0327c6e8fadc5acf2351986706a64}
+
+
+getter method for the number of candidates found in the ballot 
+
+\begin{DoxyReturn}{Returns}
+\# of candidates 
+\end{DoxyReturn}
+\index{Ballot@{Ballot}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{is\+Valid()}{isValid()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Ballot\+::is\+Valid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classBallot_a2fecab45faac9e47e6c855a3bb227c58}{}\label{classBallot_a2fecab45faac9e47e6c855a3bb227c58}
+
+
+check the validity of a ballot 
+
+\begin{DoxyReturn}{Returns}
+true if valid ballot, false otherwise 
+\end{DoxyReturn}
+\index{Ballot@{Ballot}!set\+Ballot\+\_\+id@{set\+Ballot\+\_\+id}}
+\index{set\+Ballot\+\_\+id@{set\+Ballot\+\_\+id}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{set\+Ballot\+\_\+id(int id\+\_\+)}{setBallot_id(int id_)}}]{\setlength{\rightskip}{0pt plus 5cm}void Ballot\+::set\+Ballot\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{int}]{id\+\_\+}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_a4ee7baa84508cfd6551fb8d6974955d6}{}\label{classBallot_a4ee7baa84508cfd6551fb8d6974955d6}
+
+
+setter method for ballot\+\_\+id\+\_\+. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & unique id of a ballot \\
+\hline
+\end{DoxyParams}
+\index{Ballot@{Ballot}!set\+List\+\_\+of\+\_\+names@{set\+List\+\_\+of\+\_\+names}}
+\index{set\+List\+\_\+of\+\_\+names@{set\+List\+\_\+of\+\_\+names}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{set\+List\+\_\+of\+\_\+names(char $\ast$$\ast$names)}{setList_of_names(char **names)}}]{\setlength{\rightskip}{0pt plus 5cm}void Ballot\+::set\+List\+\_\+of\+\_\+names (
+\begin{DoxyParamCaption}
+\item[{char $\ast$$\ast$}]{names}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_a0a065a3a5cdf9012240899b5b7d74e34}{}\label{classBallot_a0a065a3a5cdf9012240899b5b7d74e34}
+
+
+setter method for the array containing each candidate name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em names} & a list of candidate names \\
+\hline
+\end{DoxyParams}
+\index{Ballot@{Ballot}!set\+List\+\_\+of\+\_\+ranks@{set\+List\+\_\+of\+\_\+ranks}}
+\index{set\+List\+\_\+of\+\_\+ranks@{set\+List\+\_\+of\+\_\+ranks}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{set\+List\+\_\+of\+\_\+ranks(int $\ast$lst)}{setList_of_ranks(int *lst)}}]{\setlength{\rightskip}{0pt plus 5cm}void Ballot\+::set\+List\+\_\+of\+\_\+ranks (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{lst}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_a3cff40fe3958d94689df4a92b178bb2a}{}\label{classBallot_a3cff40fe3958d94689df4a92b178bb2a}
+
+
+setter method for the array containing each candidate\textquotesingle{}s rankings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lst} & a list of rankings for each ballot \\
+\hline
+\end{DoxyParams}
+\index{Ballot@{Ballot}!set\+Num\+\_\+candidates@{set\+Num\+\_\+candidates}}
+\index{set\+Num\+\_\+candidates@{set\+Num\+\_\+candidates}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{set\+Num\+\_\+candidates(int num)}{setNum_candidates(int num)}}]{\setlength{\rightskip}{0pt plus 5cm}void Ballot\+::set\+Num\+\_\+candidates (
+\begin{DoxyParamCaption}
+\item[{int}]{num}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classBallot_a430f542fc81f87df6ec43a33b364c164}{}\label{classBallot_a430f542fc81f87df6ec43a33b364c164}
+
+
+setter method for number of candidates found in the ballot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & \# of candidates \\
+\hline
+\end{DoxyParams}
+\index{Ballot@{Ballot}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Ballot@{Ballot}}
+\subsubsection[{\texorpdfstring{to\+String()}{toString()}}]{\setlength{\rightskip}{0pt plus 5cm}string Ballot\+::to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classBallot_aec0bd052daf317281fd0989af273bbcc}{}\label{classBallot_aec0bd052daf317281fd0989af273bbcc}
+
+
+get a string of \hyperlink{classBallot}{Ballot} class 
+
+\begin{DoxyReturn}{Returns}
+a string represents \hyperlink{classBallot}{Ballot} object 
+\end{DoxyReturn}
+string format to return\+: ID \+: $<$ballot id$>$=\char`\"{}\char`\"{}$>$ Count\+: $<$rank 1$>$ $<$rank 2$>$ ... $<$rank n$>$=\char`\"{}\char`\"{}$>$
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/ballot.\+h\item 
+src/ballot.\+cc\end{DoxyCompactItemize}

@@ -46,9 +46,13 @@ int Election::parseInput(const char *fname) {
 
   // read an input file line by line
   ifstream input(fname);
+
+  // read no. of candidates, seats, and ballots
   input >> num_candidates_ >> num_seats_ >> num_ballots_;
   num_candidates_ = 0;
   num_ballots_ = 0;
+
+  // read a voting method
   string method;
   getline(input, method);  // read and ignore the new line character
   getline(input, method);
@@ -63,7 +67,6 @@ int Election::parseInput(const char *fname) {
 
   // the first line contains all candidate names
   getline(input, names);
-
   if (names[names.length() - 1] == '\n' || names[names.length() - 1] == '\r') {
     names.erase(names.length() - 1);  // erase the '\n' character
   }
@@ -130,6 +133,7 @@ int Election::writeToFile(const char *fname) {
     output << alternate_list_[i].toString() << endl;
   }
 
+  // finally, write all invalid ballots
   output << endl << "Invalidated ballots" << endl;
   output << "Format: <ballot ID>: <list of ranks>" << endl;
   for (int i = 0; i < num_invalid_ballots_; i++) {
@@ -172,27 +176,37 @@ int Election::generateReportFile(const char *fname) {
   auto t = time(nullptr);
   auto tm = *localtime(&t);
 
+  // write current date
   ofstream output(fname);
   output << put_time(&tm, "%m-%d-%Y") << endl;
+
+  // write voting method
   output << "Type: " << ((voting_method_ == 1) ? "Plurality"
                          : "Droop") << endl;
+
+  // write a list of candidates
   output << "Candidates: ";
   for (int i = 0; i < num_candidates_; i++) {
     output << candidates_list_[i].toString() << " ";
   }
   output << endl;
+
+  // write a number of seats
   output << "No. of seats: " << num_seats_ << endl;
 
+  // write a winners list
   output << endl << "Winners list" << endl;
   for (int i = 0; i < num_winners_; i++) {
     output << candidates_list_[i].toString() << endl;
   }
+
+  output.close();
   return 1;
 }
 
 int Election::runPlurality() {
-  // user story #2, Task #2
-  //shuffleBallots();
+  shuffleBallots(5);
+
   // distribute each vote to each corresponding candidate
   num_winners_ = num_seats_;
   num_alternatives_ = num_candidates_ - num_seats_;
@@ -237,10 +251,12 @@ string Election::toString() {
 
 int Election::distributeVote(Ballot bal) {
   if (bal.isValid() == false) {
+    bal.setValidity(false);
     invalid_ballot_list_[num_invalid_ballots_++] = bal;
     return -1;
   }
 
+  // start with rank 1
   int rank = 1;
   int idx;
 
@@ -257,7 +273,11 @@ int Election::distributeVote(Ballot bal) {
   }
 
   // otherwise, this ballot is invalid
-  invalid_ballot_list_[num_invalid_ballots_++] = bal;
+  if (bal.getValidity()) {
+    invalid_ballot_list_[num_invalid_ballots_++] = bal;
+    bal.setValidity(false);
+  }
+
   return -1;
 }
 
@@ -283,6 +303,7 @@ void Election::shuffleBallots(int piles) {
    * idea: create n piles (specified by parameter piles) and distribute each ballot
            to each pile. Then combine all piles.
    */
+  if (piles > 0) return;
 
   // create n piles
   Ballot **ballot_piles = new Ballot*[piles];
@@ -317,10 +338,9 @@ int Election::calculateDroop() {
 }
 
 int Election::runDroop() {
-  // shuffle the ballot
   // user story #2, Task #2
-  // if (shuffle_)
-  //shuffleBallots();
+  // shuffle the ballot
+  shuffleBallots(5);
 
   Ballot *bal_lst = ballot_list_;
   int bal_num = num_ballots_;
@@ -336,7 +356,6 @@ int Election::runDroop() {
       cand_idx = distributeVote(bal_lst[i]);
 
       if (cand_idx == -1) {  // the ballot is invalid
-        invalid_ballot_list_[num_invalid_ballots_++] = bal_lst[i];
         continue;
       }
 
