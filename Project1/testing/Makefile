@@ -30,10 +30,9 @@ CS3081DIR = /classes/csel-s18c3081
 # you should be able to uncomment each of the tests and successfully
 # build and run the unittest executable.
 
-DEFINES += -DARENA_TESTS
-DEFINES += -DROBOT_TESTS
-DEFINES += -DBASE_TESTS
-DEFINES += -DINTEGRATION_TESTS
+#DEFINES += -DBALLOT_TESTS
+#DEFINES += -DCANDIDATE_TESTS
+#DEFINES += -DELECTION_TESTS
 
 # Directory of source files for the project we wish to test
 #PROJROOTDIR = ../../project-$(USER)/iteration1/

@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2018 CSCI 5801 Team 09, All rights reserved.
  */
 
@@ -12,6 +12,9 @@
 using namespace std;
 
 Election::Election() {
+  /**
+   * initialize all members of the Election class
+   */
   candidates_list_ = new Candidate[MAX_CAND];
   num_candidates_ = 0;
 
@@ -31,34 +34,48 @@ Election::Election() {
   voting_method_ = 0;
 }
 
+/**
+ * \brief proccess input file
+ * @param fname CSV file name
+ * @return 1 if successful, 0 error occurs
+ */
 int Election::parseInput(const char *fname) {
-  if (fname == NULL) {
+  if (fname == NULL) {  // file name does not exists
     return -1;
   }
 
+  // read an input file line by line
   ifstream input(fname);
   string names;
+
+  // the first line contains all candidate names
   getline(input, names);
 
   if (names[names.length() - 1] == '\n' || names[names.length() - 1] == '\r') {
-    names.erase(names.length() - 1);
+    names.erase(names.length() - 1);  // erase the '\n' character
   }
 
   istringstream iss(names);
+
+  // get each candidate name and store it to the candidate list
   while (getline(iss, names, ',')) {
     candidates_list_[num_candidates_].setCandidate_name(names);
     num_candidates_++;
   }
 
-  string ballots;
-  string ballot;
+  string ballots;  // a ballot that contains all rankings
+  string ballot;  // a ranking in a ballot
 
   int i = 0;
+
+  // get each ballot from the input file
   while (getline(input, ballots)) {
     if (ballots == "") continue;
     istringstream tmp(ballots);
     i = 0;
     int *lst = new int[num_candidates_];
+
+    // get each ranking of the ballot
     while(getline(tmp, ballot, ',')) {
       int temp;
       if (ballot == "" || ballot == " " || ballot == "\n"
@@ -69,6 +86,7 @@ int Election::parseInput(const char *fname) {
       i++;
     }
 
+    // assign a unique id to each ballot and put it in the ballot list
     ballot_list_[num_ballots_].setNum_candidates(num_candidates_);
     ballot_list_[num_ballots_].setBallot_id(num_ballots_);
     ballot_list_[num_ballots_].setList_of_ranks(lst);
@@ -80,16 +98,20 @@ int Election::parseInput(const char *fname) {
 }
 
 int Election::writeToFile(const char *fname) {
-  if (fname == NULL) {
+  if (fname == NULL) {  // file name does not exist
     return -1;
   }
 
+  // create a stream for the output file
   ofstream output(fname);
+
+  // write all the winners first
   output << "Winner list" << endl;
   for (int i = 0; i < num_winners_; i++) {
     output << winner_list_[i].toString() << endl;
   }
 
+  // next, write all the losers
   output << endl << "Loser list" << endl;
   for (int i = 0; i < num_alternatives_; i++) {
     output << alternate_list_[i].toString() << endl;
@@ -98,16 +120,20 @@ int Election::writeToFile(const char *fname) {
 }
 
 int Election::generateAuditFile(const char *fname) {
-  if (fname == NULL) {
+  if (fname == NULL) {  // file name does not exist
     return -1;
   }
 
+  // create a stream for the audit file
   ofstream output(fname);
+
+  // write all the winners first and their associated votes
   output << "Winner list" << endl;
   for (int i = 0; i < num_winners_; i++) {
     output << winner_list_[i].toStringWithVotes() << endl;
   }
 
+  // next, write all the losers and their associated votes
   output << endl << "Loser list" << endl;
   for (int i = 0; i < num_alternatives_; i++) {
     output << alternate_list_[i].toStringWithVotes() << endl;
@@ -116,16 +142,20 @@ int Election::generateAuditFile(const char *fname) {
 }
 
 int Election::runPlurality() {
+  // distribute each vote to each corresponding candidate
   for (int i = 0; i < num_ballots_; i++) {
     distributeVote(ballot_list_[i]);
   }
+
   // find all candidates with highest votes
   sortCandidateByVotes();
 
+  // store all winners to the winner list (all candidates with highest votes)
   for (int i = 0; i < num_winners_; i++) {
     winner_list_[i] = candidates_list_[i];
   }
 
+  // store all losers to the loser list (the remaining candidates)
   for (int i = 0; i < num_alternatives_; i++) {
     alternate_list_[i] = candidates_list_[i + num_winners_];
   }
@@ -133,6 +163,14 @@ int Election::runPlurality() {
 }
 
 string Election::toString() {
+  /** string format to return:
+    candidate 1 name
+    candidate 2 name
+    candidate n name
+    ballot 1
+    ballot 2
+    ballot n
+   */
   string result;
   for (int i = 0; i < num_candidates_; i++) {
     result += candidates_list_[i].toString() + "\n";
@@ -146,23 +184,27 @@ string Election::toString() {
 int Election::distributeVote(Ballot bal) {
   int rank = 1;
   int idx;
+
+  // find the next available candidate to receive the ballot
   while ((idx = bal.findCandidate(rank)) != -1) {
     if (candidates_list_[idx].getStatus() == 1 || candidates_list_[idx].getStatus() == 2) {
       rank++;
       continue;
     }
 
+    // if found, record it in the ballot list of the candidate
     candidates_list_[idx].recordBallot(bal);
     return idx;
   }
 
-  // this ballot is invalid
+  // otherwise, this ballot is invalid
   invalid_ballot_list_[num_invalid_ballots_++] = bal;
   return -1;
 }
 
 void Election::sortCandidateByVotes() {
   int max;
+  // insertion sort is used to sort all candidates
   for (int i = 0; i < num_candidates_ - 1; i++) {
     max = i;
     for (int j = i; j < num_candidates_; j++) {
@@ -178,17 +220,25 @@ void Election::sortCandidateByVotes() {
 }
 
 void Election::shuffleBallots(int piles) {
+  /**
+   * idea: create n piles (specified by parameter piles) and distribute each ballot
+           to each pile. Then combine all piles.
+   */
+
+  // create n piles
   Ballot **ballot_piles = new Ballot*[piles];
   for (int i = 0; i < piles; i++) {
     ballot_piles[i] = new Ballot[MAX_BALLOT];
   }
 
+  // distribute each ballot to each pile
   int count[piles] = { 0 };
   for (int i = 0; i < num_ballots_; i++) {
     int j = i % piles;
     ballot_piles[j][count[j]++] = ballot_list_[i];
   }
 
+  // combine all piles
   int k = 0;
   for (int i = 0; i < piles; i++) {
     for (int j = 0; j < count[i]; j++) {
@@ -208,6 +258,7 @@ int Election::calculateDroop() {
 }
 
 int Election::runDroop() {
+  // shuffle the ballot
   if (shuffle_)
     shuffleBallots();
 
@@ -219,6 +270,7 @@ int Election::runDroop() {
   num_alternatives_ = 0;
   num_invalid_ballots_ = 0;
 
+  // distribute all votes to all candidates if applicable
   while (num_winners_ < num_seats_ && bal_num != -1) {
     for (int i = 0; i < bal_num; i++) {
       cand_idx = distributeVote(bal_lst[i]);
@@ -228,6 +280,7 @@ int Election::runDroop() {
         continue;
       }
 
+      // if found a candidate, record that vote to a ballot list of that candidate
       if (candidates_list_[cand_idx].getNum_ballots() == quota) {
         candidates_list_[cand_idx].setIsWinner(true);
         candidates_list_[cand_idx].setStatus(1);
@@ -235,9 +288,11 @@ int Election::runDroop() {
       }
     }
 
+    // get all ballots from the loser and redistribute all them
     bal_lst = getLoserBallotList(bal_num, cand_idx);
 
     while (bal_num == 0) {
+      // if the loser hasn't received any votes yet, get the next loser
       candidates_list_[cand_idx].setStatus(2);
       alternate_list_[num_alternatives_++] = candidates_list_[cand_idx];
       bal_lst = getLoserBallotList(bal_num, cand_idx);
@@ -249,6 +304,7 @@ int Election::runDroop() {
     }
   }
 
+  // if does not have enough winners, move candidates from the loser list
   while (num_winners_ < num_seats_) {
     winner_list_[num_winners_++] = alternate_list_[--num_alternatives_];
   }
@@ -266,6 +322,8 @@ int Election::getLoser() {
   int min = -1;
   int idx = -1;
 
+  // scan through the candidate list and return an index the the candidate that
+  // has the least vote
   for (int i = 0; i < num_candidates_; i++) {
     if (candidates_list_[i].getStatus() != 0) {
       continue;
@@ -286,6 +344,7 @@ int Election::getLoser() {
 }
 
 Ballot* Election::getLoserBallotList(int &n, int &idx) {
+  // get an index to the loser first
   int i = getLoser();
 
   if (i == -1) {
@@ -294,6 +353,7 @@ Ballot* Election::getLoserBallotList(int &n, int &idx) {
     return NULL;
   }
 
+  // then, return a ballot list of that loser
   idx = i;
   n = candidates_list_[i].getNum_ballots();
   return (candidates_list_[i].getBallot_list());
