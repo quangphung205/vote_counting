@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2018 CSCI 5801 Team 09, All rights reserved.
  */
 
@@ -14,6 +14,11 @@ Ballot::Ballot() {
 }
 
 string Ballot::toString() {
+  /**
+   * string format to return:
+     ID : <ballot id>
+     Count: <rank 1> <rank 2> ... <rank n>
+   */
   char buff[10];
   sprintf(buff, "%d", ballot_id_);
   string result = "ID: " + string(buff) + " ";
@@ -27,6 +32,7 @@ string Ballot::toString() {
 }
 
 int Ballot::findCandidate(int rank) {
+  // find an index to a candidate who has "rank" in the ballot
   for (int i = 0; i < num_candidates_; i++) {
     if (list_of_ranks_[i] == rank) {
       return i;
