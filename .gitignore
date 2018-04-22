@@ -3,4 +3,7 @@ execu
 *.gcda
 *.d
 *.gcno
+audit
+report
+result
 
