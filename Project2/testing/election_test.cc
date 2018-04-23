@@ -129,7 +129,7 @@ TEST_F(ElectionTest, toString_for_election) {
   bal[0].setNum_candidates(1);
   bal[0].setList_of_ranks(new int(3));
   election.setBallot_list(bal);
-  EXPECT_EQ(election.toString(), "Quang\nID: 5 Count: 1\n3 \n") << "\nFAIL tostring of Election";
+  EXPECT_EQ(election.toString(), "Quang\n5: 3 \n") << "\nFAIL tostring of Election";
 }
 
 TEST_F(ElectionTest, sortCandidateByVotes) {
